@@ -20,7 +20,48 @@ img {
   margin: 0 auto;
   position: relative;
 }
+.site-logo {
+  float: left;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  text-align: center;
+}
+.site-logo a {
+  display: inline-block;
+  font-family: 'Dancing Script', cursive;
+  font-size: 36px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #ffffff;
+}
+.hero-content {
+  max-width: 500px;
+  padding: 0 20px;
+  margin-top: 250px;
+  margin-left:350px;
+  text-align: center;
+}
+.hero-content .hero-title {
+  margin: 0;
+  
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: rgba(0, 120, 217, 0.6);
+  text-shadow: 0px 1px 1px rgba(51, 51, 51, 0.1);
+}
 
+.hero-content .hero-description {
+  margin-top: 15px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #212121;
+  text-shadow: 0px 1px 1px rgba(51, 51, 51, 0.1);
+}
 /*BUTTON*/
 .btn {
   width: 130px;
@@ -99,7 +140,7 @@ header {
   position: fixed;
   top: 0;
   z-index: 9;
-  background-color: #F6F5F0;
+  background-color: #0078d9;
   border-bottom: 1px solid #c8c8c8;
 }
 header > .inner {
@@ -143,10 +184,10 @@ header .sub-menu ul.menu li a {
   padding: 11px 16px;
   display: block;
   font-size: 13px;
-  color: #656565;
+  color: #ffffff;
 }
 header .sub-menu ul.menu li a:hover {
-  color: #000;
+  color: #ffffff;
 }
 header .sub-menu .search {
   position: relative;
@@ -194,7 +235,7 @@ header .main-menu .item .item__name {
   font-size: 13px;
 }
 header .main-menu .item:hover .item__name {
-  background-color: #2C2A29;
+  background-color: #ffffff;
   color: #EA9926;
   border-radius: 6px 6px 0 0;
 }
@@ -262,8 +303,10 @@ header .badges .badge {
 /*VISUAL*/
 .visual {
   margin-top: 120px;
-  background-image: url("../images/visual_bg.jpg");
+  background-image: url("../images/123.jpg");
   background-position: center;
+  height: auto;
+  width: auto;
 }
 .visual .inner {
   height: 646px;
@@ -315,7 +358,7 @@ header .badges .badge {
 .notice .bg-left {
   width: 50%;
   height: 100%;
-  background-color: #333;
+  background-color: #76b1ff;
   position: absolute;
   top: 0;
   left: 0;
@@ -323,7 +366,7 @@ header .badges .badge {
 .notice .bg-right {
   width: 50%;
   height: 100%;
-  background-color: #f6f5ef;
+  background-color: #76b1ff;
   position: absolute;
   top: 0;
   right: 0;
@@ -334,7 +377,7 @@ header .badges .badge {
 }
 .notice .inner__left {
   width: 70%;
-  background-color: #333;
+  background-color: #76b1ff;
   display: flex;
   align-items: center;
 }
@@ -345,11 +388,11 @@ header .badges .badge {
   margin-right: 20px;
 }
 .notice .inner__left .swiper {
-  height: 62px;
+  height: 20px;
   flex-grow: 1;
 }
 .notice .inner__left .swiper .swiper-slide {
-  height: 62px;
+  height: 50px;
   display: flex;
   align-items: center;
 }
@@ -357,8 +400,8 @@ header .badges .badge {
   color: #fff;
 }
 .notice .inner__left .notice-more {
-  width: 62px;
-  height: 62px;
+  width: 40px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -395,7 +438,7 @@ header .badges .badge {
   background-color: #f6f5ef;
   overflow: hidden;
   position: relative;
-  height: 663px;
+  height: 450px;
   transition: height .4s;
 }
 .promotion.hide {
@@ -404,7 +447,7 @@ header .badges .badge {
 .promotion .swiper {
   /* 819px 슬라이드 3개와 그 사이 여백 10px씩 = 2477px */
   width: calc(819px * 3 + 10px * 2);
-  height: 553px;
+  height: 800px;
   flex-shrink: 0;
 }
 .promotion .swiper-slide {
@@ -423,7 +466,7 @@ header .badges .badge {
   margin: auto;
 }
 .promotion .swiper-pagination {
-  bottom: 40px !important;
+  bottom: 20px !important;
   z-index: 1;
 }
 .promotion .swiper-pagination .swiper-pagination-bullet {
