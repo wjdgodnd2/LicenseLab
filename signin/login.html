@@ -1,103 +1,21 @@
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>로그인 페이지</title>
+<link rel="icon" href="/favicon.png" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet" />
+  <script src="/js/includeHTML.js" defer></script>
+  <script src="/js/main.js"></script>
+</head>
 <body>
-    <style>
-    
-        html {
-          height: 100%;
-        }
-        
-        body {
-          height: 100%;
-          margin: 0;
-          font-family: Arial, Helvetica, sans-serif;
-          display: grid;
-          justify-items: center;
-          align-items: center;
-          background-color: #64b5fd;
-        }
-        #main-holder {
-         width: 50%;
-         height: 70%;
-        }
-        html, body {
-        height: 100%
-        }
-
-        #main-holder {
-        width: 50%;
-        height: 70%;
-        }
-
-        
-        #main-holder {
-          width: 50%;
-          height: 70%;
-          display: grid;
-          justify-items: center;
-          align-items: center;
-          background-color: white;
-          border-radius: 7px;
-          box-shadow: 0px 0px 5px 2px black;
-        }
-        
-        #login-error-msg-holder {
-          width: 100%;
-          height: 100%;
-          display: grid;
-          justify-items: center;
-          align-items: center;
-        }
-        
-        #login-error-msg {
-          width: 23%;
-          text-align: center;
-          margin: 0;
-          padding: 5px;
-          font-size: 12px;
-          font-weight: bold;
-          color: #8a0000;
-          border: 1px solid #8a0000;
-          background-color: #e58f8f;
-          opacity: 0;
-        }
-        
-        #error-msg-second-line {
-          display: block;
-        }
-        
-        #login-form {
-          align-self: flex-start;
-          display: grid;
-          justify-items: center;
-          align-items: center;
-        }
-        
-        .login-form-field::placeholder {
-          color: #3a3a3a;
-        }
-        
-        .login-form-field {
-          width: 100%;
-          border: none;
-          border-bottom: 1px solid #3a3a3a;
-          margin-bottom: 10px;
-          border-radius: 3px;
-          outline: none;
-          padding: 0px 0px 5px 5px;
-        }
-        
-        #login-form-submit {
-          width: 100%;
-          padding: 7px;
-          border: none;
-          border-radius: 5px;
-          color: white;
-          font-weight: bold;
-          background-color: #7aa4fd;
-          cursor: pointer;
-          outline: none;
-        }
-          </style>
-             <a href="#" onclick="location.href='cafe/index.html'">LicenseLab</a>
+  <header data-include="/include/header.html"></header>
             <main id="main-holder">
              
               <h1 id="login-header">Login</h1>
@@ -113,7 +31,5 @@
               </form>
             
             </main>
-            
-              
-          
-          </body>
+            <footer data-include="/include/footer.html"></footer>
+</body>
