@@ -179,7 +179,6 @@ element.style {
   opacity: 1;
 }
 a {
-  text-decoration: underline;
   color: rgba(0, 0, 0, 0.8);
 }
 a {
@@ -1032,4 +1031,45 @@ footer .logo {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.dDay {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  display: block;
+  width: 46px;
+  height: 20px;
+  line-height: 19px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: #fff;
+  background: #4043f0;
+  border-radius: 10px;
+}
+p strong {
+  /* display: inline-block; */
+  /* width: 60px; */
+  color: #6e6e6e;
+  font-weight: bold;
+  position: relative;
+  margin-right: 5px;
+  letter-spacing: 1.5px;
+}
+
+.colorPoint {
+  color: #706efe;
+}
+
+ .post-body button {
+  width: 300px;
+  height: 33px;
+  text-align: center;
+  color: #fff;
+  background: #4043f0;
+  font-size: 14px;
+  line-height: 25px;
+  border-radius: 50px;
+  border: none;
+  outline: none;
 }
