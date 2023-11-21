@@ -184,7 +184,14 @@ body{
 
 .lice_box {
     position: relative;
-    margin: 30px 0 0
+    padding: 20px 10px;
+    display: block;
+    color: #292929;
+    margin: 30px 0 30px;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 0 9px 1px rgba(0,0,0,.1);
+    background-color: #fff;
 }
 
 .lice_box .editor {
@@ -753,4 +760,9 @@ body{
     width: 20px;
     height: 20px;
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAPFBMVEVHcEzEsv/Esv/Esv/Esv/Esv/Esv/Esv/Esv/Esv/Esv/Esv/////Fs//n3//6+P/Uxv/w7P/Nvv/e1f/GSrIGAAAADHRSTlMAA1um+Aas31SMXAe+NgZMAAAAoElEQVQY021RSxbEIAijrYrOIKK9/11H8NNZNCtfCCECgMLHC53DK3rYiChciAoLxkkdqVWaqC0dRiYptFEkWW8zrt65mUfrDh6tl7Pi1ip6OGW0cdWCPuUDgbdfHSQHwPLMyCYoCG4LxSw7HLil5NxokfiQ0723/w1a1bAiEd1L2SPN8ER5BOrhv/uby9O++b6Q99W9LlnPcQY9RzjHOX4I8A/NpcC41wAAAABJRU5ErkJggg==) no-repeat 50%
+}
+
+[data-v-d2ef2dc2] section {
+    display: block;
+    color: #292929;
 }
