@@ -790,6 +790,4 @@ h2 {
 h2::before {
     content: url(../images/pages/pngegg.png);
     margin-right: 10px;
-    width:35px;
-    height: 35px;
   }
