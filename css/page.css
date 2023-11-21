@@ -168,7 +168,7 @@ body{
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
-    background-color: #f1f1f1;
+    background-color: #ffffff;
     margin-bottom:20px;
 }
 .collapsible:after {
@@ -772,4 +772,13 @@ body{
     height: 40px!important;
     line-height: 38px!important;
     display: inline-block!important;
+}
+
+h2 {
+    height: 80px;
+    line-height: 80px;
+    background: url(/images/pages/pngegg.png) no-repeat 0;
+    font-size: 20px;
+    display: block;
+    padding: 0 0 0 30px;
 }

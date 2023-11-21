@@ -1,6 +1,6 @@
 /*COMMON*/
 body {
-  font-family: 'Nanum Gothic', sans-serif;
+  font-family: "Noto Sans KR", "Apple-SD", "malgun gothic", "dotum", "Gulim", "굴림", "Helvetica Neue", "Helvetica, Arial, Verdana, Tahoma", "sans-serif";
   font-size: 16px;
   font-weight: 400;
   line-height: 1.4;
@@ -71,7 +71,7 @@ img {
   padding: 0;
   box-sizing: border-box;
   outline: 0 none;
-  font-family: Noto Sans KR,Apple-SD,malgun gothic,dotum,Gulim,굴림,Helvetica Neue,Helvetica\,Arial,Verdana\,Tahoma,"sans-serif";
+  font-family: "Noto Sans KR", "Apple-SD", "malgun gothic", "dotum", "Gulim", "굴림", "Helvetica Neue", "Helvetica, Arial, Verdana, Tahoma", "sans-serif";
 }
 *, :after, :before {
   box-sizing: border-box;
@@ -81,7 +81,7 @@ img {
   padding: 0;
   box-sizing: border-box;
   outline: 0 none;
-  font-family: Noto Sans KR,Apple-SD,malgun gothic,dotum,Gulim,굴림,Helvetica Neue,Helvetica\,Arial,Verdana\,Tahoma,"sans-serif";
+  font-family: "Noto Sans KR", "Apple-SD", "malgun gothic", "dotum", "Gulim", "굴림", "Helvetica Neue", "Helvetica, Arial, Verdana, Tahoma", "sans-serif";
 }
 *, :after, :before {
   box-sizing: border-box;
@@ -97,7 +97,7 @@ img {
   padding: 0;
   box-sizing: border-box;
   outline: 0 none;
-  font-family: Noto Sans KR,Apple-SD,malgun gothic,dotum,Gulim,굴림,Helvetica Neue,Helvetica\,Arial,Verdana\,Tahoma,"sans-serif";
+  font-family: "Noto Sans KR", "Apple-SD", "malgun gothic", "dotum", "Gulim", "굴림", "Helvetica Neue", "Helvetica, Arial, Verdana, Tahoma", "sans-serif";
 }
 *, :after, :before {
   box-sizing: border-box;
