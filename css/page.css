@@ -763,7 +763,6 @@ body{
 }
 
 .subTit-blue {
-    background: url(../images/pages/icon_bar.jpg) no-repeat 0 50%/3px auto;
     font-size: 16px!important;
     font-weight: 500!important;
     border-radius: 6px!important;
@@ -773,11 +772,11 @@ body{
     line-height: 38px!important;
     display: inline-block!important;
 }
-/* .subTit-blue::before {
+.subTit-blue::before {
     content: url(../images/pages/icon_bar.jpg);
     display: inline-block;
-    margin-right: 10px; 이미지와 글 사이의 간격을 조절할 수 있습니다.
-  } */
+    margin-right: 10px;
+  }
 
 h2 {
     height: 80px;
