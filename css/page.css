@@ -787,7 +787,13 @@ h2 {
     padding: 0 0 0 30px;
 }
 
+h2::before {
+    content: url(../images/pages/pngegg.png);
+    display: inline-block;
+    margin-right: 10px;
+  }
+
 .toeic{
-    width:40px;
-    height:40px;
+    width:35px;
+    height:35px;
 }
