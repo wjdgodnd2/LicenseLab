@@ -764,7 +764,7 @@ body{
 
 .subTit-blue {
     font-size: 16px!important;
-    font-weight: 500!important;
+    font-weight: bold;
     border-radius: 6px!important;
     padding: 0 15px 0 11px!important;
     margin: 30px 0 18px!important;
