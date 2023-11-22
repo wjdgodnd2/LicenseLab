@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // 폼에서 값 가져오기
       const username = document.getElementById("username-field").value;
       const password = document.getElementById("password-field").value;
-      const loginLabel = document.getElementById("login-label");
 
       // 사용자 인증 확인 (실제 환경에서는 서버에서 수행될 것입니다)
       if (username === "admin" && password === "admin") {
