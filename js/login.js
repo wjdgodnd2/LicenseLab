@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
         
         window.location.href = "./LicenseLab/index.html";
         loginLabel.innerText = "Logout";
-      } else {
+      }
+       else {
         // 오류 메시지 표시
         loginErrorMsg.style.opacity = 1;
       }
