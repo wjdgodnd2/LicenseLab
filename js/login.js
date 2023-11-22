@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "./LicenseLab/index.html";
       }
        else {
+        alert("아이디 혹은 비밀번호를 잘 못 입력하였습니다.");
         // 오류 메시지 표시
         loginErrorMsg.style.opacity = 1;
       }
