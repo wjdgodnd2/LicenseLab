@@ -17,14 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "./LicenseLab/index.html";
 
         loginLabel.innerText = "로그아웃";
-        // 리다이렉션을 위해 window.location.href = "목표_페이지.html";을 사용할 수 있습니다.
       } else {
         // 오류 메시지 표시
         loginErrorMsg.style.opacity = 1;
       }
     });
-//     const loginErrorMsgHolder = document.getElementById("login-error-msg-holder");
-//   loginErrorMsgHolder.addEventListener("click", function () {
-//     // 메인 페이지로 이동
-//   });
   });
