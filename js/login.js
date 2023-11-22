@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("로그인 성공!"); // 이 부분을 선호하는 성공 표시 방법으로 대체할 수 있습니다.
         
         window.location.href = "./LicenseLab/index.html";
-        loginLabel.innerText = "Logout";
       }
        else {
         // 오류 메시지 표시
