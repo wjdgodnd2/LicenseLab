@@ -37,6 +37,12 @@ document.addEventListener("DOMContentLoaded", function () {
       for (var i = 0; i < data.length; i++) {
         var sliceAngle = (2 * Math.PI * data[i]) / totalValue;
         var endAngle = startAngle + sliceAngle;
+        var sliceMiddleAngle = startAngle + sliceAngle / 2;
+
+        var textX = centerX + (radius / 2) * Math.cos(sliceMiddleAngle);
+        var textY = centerY + (radius / 2) * Math.sin(sliceMiddleAngle);
+
+        drawText(ctx, data[i] + "%", textX, textY);
   
         drawPieSlice(ctx, centerX, centerY, radius, startAngle, endAngle, colors[i]);
   
@@ -55,4 +61,12 @@ document.addEventListener("DOMContentLoaded", function () {
     ctx.arc(centerX, centerY, radius, startAngle, endAngle);
     ctx.closePath();
     ctx.fill();
+  }
+
+  function drawText(ctx, text, x, y) {
+    ctx.fillStyle = "#000"; // 텍스트 색상
+    ctx.font = "12px Arial"; // 텍스트 폰트 및 크기
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(text, x, y);
   }
