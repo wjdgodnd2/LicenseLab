@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById("login-form");
     const loginErrorMsg = document.getElementById("login-error-msg");
     const loginLabel = document.getElementById("login-label");
-    
+
     loginForm.addEventListener("submit", function (e) {
       e.preventDefault();
   
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         
         window.location.href = "./LicenseLab/index.html";
 
-        loginLabel.innerText = "로그아웃";
+        loginLabel.innerText = "Logout";
       } else {
         // 오류 메시지 표시
         loginErrorMsg.style.opacity = 1;
