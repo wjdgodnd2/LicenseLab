@@ -390,7 +390,7 @@ header .main-menu .item:hover .item__contents {
   display: block;
 }
 header .main-menu .item .item__contents .contents__menu {
-  background-color: rgba(100, 200, 255, 0.7);
+  background-color: rgba(255, 255, 255);
 }
 header .main-menu .item .item__contents .contents__menu > ul {
   padding: 20px 0;
