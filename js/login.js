@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // 리다이렉트 또는 성공 메시지 표시
         alert("로그인 성공!"); // 이 부분을 선호하는 성공 표시 방법으로 대체할 수 있습니다.
         
-        window.location.href = "./LicenseLab/index.html";
+        window.location.href = "/LicenseLab/index.html";
       }
        else {
         alert("아이디 혹은 비밀번호를 잘 못 입력하였습니다.");
