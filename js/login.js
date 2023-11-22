@@ -23,6 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const loginErrorMsgHolder = document.getElementById("login-error-msg-holder");
   loginErrorMsgHolder.addEventListener("click", function () {
     // 메인 페이지로 이동
-    window.location.href = "/LicenseLab/index.html";
+    window.location.href = "./LicenseLab/index.html";
   });
   });
