@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.getElementById("login-form");
     const loginErrorMsg = document.getElementById("login-error-msg");
-  
+    const loginLabel = document.getElementById("login-label");
+    
     loginForm.addEventListener("submit", function (e) {
       e.preventDefault();
   
