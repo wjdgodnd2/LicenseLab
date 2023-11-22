@@ -824,7 +824,7 @@ h2::before {
     font-size: 20px;
     font-weight: 700;
     color: #292929;
-    padding: 0 0 0 39px;
+    padding: 0 0 0 37px;
     background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAWCAMAAAACYceEAAAAZlBMVEVHcExHR0ebV/RHR0dHR0ecV/WcV/VHR0dHR0dHR0ecV/WcV/WPVNucV/WcV/WcV/VHR0dHR0dHR0eWVumcV/WcV/WcV/WcV/VHR0ecV/WcV/WcV/WcV/VHR0ecV/VHR0d6UK5HR0d4kJorAAAAInRSTlMAWq4S8/S/7R9M3egL7p8aw+mnKMxqUl0wPdSQhY574lo4YeW6UQAAAN5JREFUKM91kNlywyAMRVUcKS5rMIsL3tL//8liMolL3J435qArzYXFXk9sH1Cww+eJ22031+pbhpf5Pr53rdmOFUtr/k+TXUXu75ERsfvT2EtlAzAeSTOPTD5M/1XpQXKeQM8QBD1M1++UACYMBEQHEcOvtDIippkEcU4jUTPj0HE1mcSQVtFcndBExQA8d0GBXfoXDiMQrSFr0ByGy4H1BBkVKiY5ey6pdBGnVZc9kcqRLTNSlCZkFd8bm7JHREUqvRvtwehZghrPxhCW1v4wXPAURMaTGcXesvPCwQ/JTA8q6m1HhQAAAABJRU5ErkJggg==) no-repeat 9px 6px
 }
 
@@ -857,7 +857,7 @@ h2::before {
 }
 
  .datalab .datalabWrap .datalabBox .part .chart>p {
-    width: 311px;
+    width: 340px;
     height: 22px;
     line-height: 22px;
     font-size: 13px;
@@ -867,7 +867,7 @@ h2::before {
     border-radius: 10px;
     background-color: rgba(215,217,252,.4);
     text-align: center;
-    margin: 5px 0 0 25px
+    margin: 5px 0 0 0px;
 }
 
  .datalab .datalabWrap .datalabBox .part .chart .chartBox {
@@ -1098,8 +1098,9 @@ h2::before {
 }
 
  .datalab .datalabWrap .datalabBox.job .part .chart>p {
-    width: 281px;
-    background: rgba(252,210,234,.4)
+    width: 300px;
+    background: rgba(252,210,234,.4);
+    margin: 5px 0 0 17px;
 }
 
  .datalab .datalabWrap .datalabBox.job .part .top .ulBox ul li a {
