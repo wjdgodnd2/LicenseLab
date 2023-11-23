@@ -20,6 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // 두 번째 파이 차트를 그리는 함수 호출
     drawPieChart("pie-chart2", [44, 19, 18, 13, 6], ["#C3ABFF33", "#FFC4D733", "#FFF38933", "#D5FF9E33", "#C6DAFF33"]);
+
+    drawPieChart("pie-chart3", [47, 43, 6, 3, 1], ["#C3ABFF33", "#FFC4D733", "#FFF38933", "#D5FF9E33", "#C6DAFF33"]);
+
+    drawPieChart("pie-chart4", [46, 21, 16, 11, 6], ["#C3ABFF33", "#FFC4D733", "#FFF38933", "#D5FF9E33", "#C6DAFF33"]);
   });
   
   // 파이 차트를 그리는 함수
