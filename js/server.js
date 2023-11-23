@@ -1,12 +1,19 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
-const cors = require('cors'); // cors 미들웨어 추가
+const cors = require('cors');
+const fs = require('fs'); // 파일 시스템 모듈 추가
 
 const app = express();
 const port = 3000;
+const dbFilePath = 'mydatabase.db'; // 데이터베이스 파일 경로
+
+// 데이터베이스 파일이 없으면 생성
+if (!fs.existsSync(dbFilePath)) {
+  fs.writeFileSync(dbFilePath, ''); // 내용이 없는 빈 파일 생성
+}
 
 // SQLite 데이터베이스 연결
-const db = new sqlite3.Database('mydatabase.db');
+const db = new sqlite3.Database(dbFilePath);
 
 // 테이블 생성 (posts 테이블 생성)
 db.serialize(() => {
@@ -24,7 +31,7 @@ db.serialize(() => {
 
 // Express 미들웨어 설정
 app.use(express.json());
-app.use(cors()); // cors 미들웨어 적용
+app.use(cors());
 
 // 게시물 목록 가져오기
 app.get('/api/posts', (req, res) => {
