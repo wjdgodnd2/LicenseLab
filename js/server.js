@@ -1,33 +1,35 @@
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
-const fs = require('fs'); // 파일 시스템 모듈 추가
+const fs = require('fs');
 
 const app = express();
 const port = 3000;
-const dbFilePath = 'mydatabase.db'; // 데이터베이스 파일 경로
+const dbFilePath = 'mydatabase.db';
 
 // 데이터베이스 파일이 없으면 생성
 if (!fs.existsSync(dbFilePath)) {
-  fs.writeFileSync(dbFilePath, ''); // 내용이 없는 빈 파일 생성
+  const db = new sqlite3.Database(dbFilePath);
+
+  // 테이블 생성 (posts 테이블 생성)
+  db.serialize(() => {
+    db.run(`
+      CREATE TABLE IF NOT EXISTS posts (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT,
+        writer TEXT,
+        password TEXT,
+        content TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
+  });
+
+  db.close();
 }
 
 // SQLite 데이터베이스 연결
 const db = new sqlite3.Database(dbFilePath);
-
-// 테이블 생성 (posts 테이블 생성)
-db.serialize(() => {
-  db.run(`
-    CREATE TABLE IF NOT EXISTS posts (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      title TEXT,
-      writer TEXT,
-      password TEXT,
-      content TEXT,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
-});
 
 // Express 미들웨어 설정
 app.use(express.json());
