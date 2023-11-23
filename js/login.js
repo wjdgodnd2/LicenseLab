@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // 리다이렉션을 위해 window.location.href = "목표_페이지.html";을 사용할 수 있습니다.
       } else {
+        alert("아이디 혹은 비밀번호를 잘못 입력하였습니다."); 
         // 오류 메시지 표시
         loginErrorMsg.style.opacity = 1;
       }
