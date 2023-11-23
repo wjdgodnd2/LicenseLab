@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
       loginErrorMsg.style.opacity = 1;
     }
   });
+
+  // 함수가 올바른 위치에 정의되었습니다.
+
   // 로그인 상태 초기화
-  //updateMenu();
+  updateMenu();
 });
