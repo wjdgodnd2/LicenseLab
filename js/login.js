@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function toggleLoginState() {
     isLoggedIn = !isLoggedIn;
+    window.location.href = "./LicenceLab/index.html"
     updateMenu();
   }
 
