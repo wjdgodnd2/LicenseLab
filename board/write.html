@@ -14,31 +14,64 @@
         </div>
         <div class="board_write_wrap">
             <div class="board_write">
-                <div class="title">
-                    <dl>
-                        <dt>제목</dt>
-                        <dd><input type="text" placeholder="제목 입력"></dd>
-                    </dl>
-                </div>
-                <div class="info">
-                    <dl>
-                        <dt>글쓴이</dt>
-                        <dd><input type="text" placeholder="글쓴이 입력"></dd>
-                    </dl>
-                    <dl>
-                        <dt>비밀번호</dt>
-                        <dd><input type="password" placeholder="비밀번호 입력"></dd>
-                    </dl>
-                </div>
-                <div class="cont">
-                    <textarea placeholder="내용 입력"></textarea>
-                </div>
+                <form id="writeForm">
+                    <div class="title">
+                        <dl>
+                            <dt>제목</dt>
+                            <dd><input type="text" id="titleInput" placeholder="제목 입력"></dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <dl>
+                            <dt>글쓴이</dt>
+                            <dd><input type="text" id="writerInput" placeholder="글쓴이 입력"></dd>
+                        </dl>
+                        <dl>
+                            <dt>비밀번호</dt>
+                            <dd><input type="password" id="passwordInput" placeholder="비밀번호 입력"></dd>
+                        </dl>
+                    </div>
+                    <div class="cont">
+                        <textarea id="contentInput" placeholder="내용 입력"></textarea>
+                    </div>
+                </form>
             </div>
             <div class="bt_wrap">
-                <a href="view.html" class="on">등록</a>
+                <button type="button" onclick="submitPost()">등록</button>
                 <a href="list.html">취소</a>
             </div>
         </div>
     </div>
+
+    <script>
+        function submitPost() {
+            const title = document.getElementById('titleInput').value;
+            const writer = document.getElementById('writerInput').value;
+            const password = document.getElementById('passwordInput').value;
+            const content = document.getElementById('contentInput').value;
+
+            // 게시물 생성을 처리하는 서버 API 엔드포인트가 있다고 가정합니다
+            fetch('http://localhost:3000/api/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: title,
+                    writer: writer,
+                    password: password,
+                    content: content,
+                }),
+            })
+            .then(response => response.json())
+            .then(post => {
+                // 성공적으로 제출한 후 list.html 페이지로 이동
+                window.location.href = 'list.html';
+            })
+            .catch(error => {
+                console.error('게시글을 등록하는 데 실패했습니다.', error);
+            });
+        }
+    </script>
 </body>
 </html>

@@ -1,38 +1,32 @@
-// server.js
-
 const express = require('express');
-const sqlite3 = require('sqlite3');
-const bodyParser = require('body-parser');
+const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
 const port = 3000;
 
 // SQLite 데이터베이스 연결
-const db = new sqlite3.Database('database.db');
+const db = new sqlite3.Database('mydatabase.db');
 
-// 테이블 생성 쿼리
-const createTableQuery = `
-  CREATE TABLE IF NOT EXISTS posts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT,
-    writer TEXT,
-    content TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  )
-`;
+// 테이블 생성 (예제로 posts 테이블 생성)
+db.serialize(() => {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS posts (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      title TEXT,
+      writer TEXT,
+      password TEXT,
+      content TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+});
 
-// 데이터베이스에 테이블 생성
-db.run(createTableQuery);
+// Express 미들웨어 설정
+app.use(express.json());
 
-// Middleware 설정
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// 게시글 목록 조회
+// 게시물 목록 가져오기
 app.get('/api/posts', (req, res) => {
-  const query = 'SELECT * FROM posts ORDER BY created_at DESC';
-
-  db.all(query, [], (err, rows) => {
+  db.all('SELECT * FROM posts', (err, rows) => {
     if (err) {
       console.error(err.message);
       res.status(500).json({ error: 'Internal Server Error' });
@@ -42,22 +36,29 @@ app.get('/api/posts', (req, res) => {
   });
 });
 
-// 게시글 등록
+// 새 게시물 생성
 app.post('/api/posts', (req, res) => {
-  const { title, writer, content } = req.body;
-  const query = 'INSERT INTO posts (title, writer, content) VALUES (?, ?, ?)';
+  const { title, writer, password, content } = req.body;
 
-  db.run(query, [title, writer, content], function (err) {
-    if (err) {
-      console.error(err.message);
-      res.status(500).json({ error: 'Internal Server Error' });
-    } else {
-      res.json({ id: this.lastID });
+  if (!title || !writer || !password || !content) {
+    return res.status(400).json({ error: '모든 필드를 입력하세요.' });
+  }
+
+  db.run(
+    'INSERT INTO posts (title, writer, password, content) VALUES (?, ?, ?, ?)',
+    [title, writer, password, content],
+    function (err) {
+      if (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+      } else {
+        res.json({ id: this.lastID });
+      }
     }
-  });
+  );
 });
 
 // 서버 시작
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
 });
