@@ -7,11 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateMenu() {
     if (isLoggedIn) {
       signInLink.innerText = 'Logout';
-
       // 로그인 상태에 따른 추가 로직 또는 메뉴 항목을 여기에 추가할 수 있습니다.
     } else {
       signInLink.innerText = 'Sign In';
-
       // 로그아웃 상태에 따른 추가 로직 또는 메뉴 항목을 여기에 추가할 수 있습니다.
     }
   }
@@ -32,9 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
       loginErrorMsg.style.opacity = 1;
     }
   });
-
-  // 함수가 올바른 위치에 정의되었습니다.
-
   // 로그인 상태 초기화
-  updateMenu();
+  //updateMenu();
 });
