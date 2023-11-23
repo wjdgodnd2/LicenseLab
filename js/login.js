@@ -28,3 +28,34 @@ document.addEventListener("DOMContentLoaded", function () {
   //   // 메인 페이지로 이동
   // });
   });
+  document.addEventListener("DOMContentLoaded", function () {
+    const signInLink = document.getElementById("signInLink");
+    let isLoggedIn = false; // 초기 로그인 상태, 실제 로그인 상태는 서버에서 확인하는 것이 좋습니다.
+  
+    // 로그인/로그아웃 상태를 토글하는 함수
+    function toggleLoginState() {
+      isLoggedIn = !isLoggedIn;
+      updateMenu();
+    }
+  
+    // 로그인 상태에 따라 메뉴를 업데이트하는 함수
+    function updateMenu() {
+      if (isLoggedIn) {
+        signInLink.innerText = 'Logout';
+        // 로그인 상태에 따른 추가 로직 또는 메뉴 항목을 여기에 추가할 수 있습니다.
+      } else {
+        signInLink.innerText = 'Sign In';
+        // 로그아웃 상태에 따른 추가 로직 또는 메뉴 항목을 여기에 추가할 수 있습니다.
+      }
+    }
+  
+    // "Sign In" 링크에 클릭 이벤트를 연결합니다.
+    signInLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      // 여기에 실제 로그인 로직을 수행할 수 있습니다. 현재는 단순한 토글만 수행합니다.
+      toggleLoginState();
+    });
+  
+    // 페이지 로드 시 초기 업데이트를 수행합니다.
+    updateMenu();
+  });

@@ -45,35 +45,6 @@
   <script defer src="./js/youtube.js"></script>
   <script defer src="./js/main.js"></script>
   <script src="./js/includeHTML.js" defer></script> <!--헤더 푸터 나누는부분-->
-
-  <script>
-    // Assume you have a variable to track the login status
-    let isLoggedIn = false;
-
-    // Function to toggle the login/logout state
-    function toggleLoginState() {
-      isLoggedIn = !isLoggedIn;
-      updateMenu();
-    }
-
-    // Function to update the menu based on the login state
-    function updateMenu() {
-      const signInLink = document.getElementById('signInLink');
-      const menuList = document.getElementById('menuList');
-
-      if (isLoggedIn) {
-        signInLink.innerText = 'Logout';
-        // You can add additional logic or menu items for the logged-in state
-      } else {
-        signInLink.innerText = 'Sign In';
-        // Additional logic or menu items for the logged-out state
-      }
-    }
-
-    // Initial update when the page loads
-    updateMenu();
-  </script>
-
 </head>
 <body>
 <!-- HEADER -->
