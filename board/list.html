@@ -1,101 +1,83 @@
+<!-- list.html 수정 -->
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>게시판</title>
   <link rel="icon" href="/LicenseLab/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
-    <link rel="stylesheet" href="/LicenseLab/css/main.css">
-    <link rel="stylesheet" href="/LicenseLab/css/css.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="/LicenseLab/css/main.css">
+  <link rel="stylesheet" href="/LicenseLab/css/css.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet" />
-    <script src="/LicenseLab/js/includeHTML.js" defer></script>
-    <script src="/LicenseLab/js/main.js"></script>
-  </head>
-  <body>
-    <header data-include="/LicenseLab/include/header.html"></header>
-    <div class="lgbody">
-              <main id="main-holder">
-                
-                <body>
-                    <div class="board_wrap">
-                        <div class="board_title">
-                            <strong>게시판</strong>
-                            <p>게시판을 빠르고 정확하게 안내해드립니다.</p>
-                        </div>
-                        <div class="board_list_wrap">
-                            <div class="board_list">
-                                <div class="top">
-                                    <div class="num">번호</div>
-                                    <div class="title">제목</div>
-                                    <div class="writer">글쓴이</div>
-                                    <div class="date">작성일</div>
-                                    <div class="count">조회</div>
-                                </div>
-                                <div>
-                                    <div class="num">5</div>
-                                    <div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-                                    <div class="writer">김이름</div>
-                                    <div class="date">2021.1.15</div>
-                                    <div class="count">33</div>
-                                </div>
-                                <div>
-                                    <div class="num">4</div>
-                                    <div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-                                    <div class="writer">김이름</div>
-                                    <div class="date">2021.1.15</div>
-                                    <div class="count">33</div>
-                                </div>
-                                <div>
-                                    <div class="num">3</div>
-                                    <div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-                                    <div class="writer">김이름</div>
-                                    <div class="date">2021.1.15</div>
-                                    <div class="count">33</div>
-                                </div>
-                                <div>
-                                    <div class="num">2</div>
-                                    <div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-                                    <div class="writer">김이름</div>
-                                    <div class="date">2021.1.15</div>
-                                    <div class="count">33</div>
-                                </div>
-                                <div>
-                                    <div class="num">1</div>
-                                    <div class="title"><a href="view.html">글 제목이 들어갑니다.</a></div>
-                                    <div class="writer">김이름</div>
-                                    <div class="date">2021.1.15</div>
-                                    <div class="count">33</div>
-                                </div>
-                            </div>
-                            <div class="board_page">
-                                <a href="#" class="bt first"><<</a>
-                                <a href="#" class="bt prev"><</a>
-                                <a href="#" class="num on">1</a>
-                                <a href="#" class="num">2</a>
-                                <a href="#" class="num">3</a>
-                                <a href="#" class="num">4</a>
-                                <a href="#" class="num">5</a>
-                                <a href="#" class="bt next">></a>
-                                <a href="#" class="bt last">>></a>
-                            </div>
-                            <div class="bt_wrap">
-                                <a href="write.html" class="on">등록</a>
-                                <!--<a href="#">수정</a>-->
-                            </div>
-                        </div>
-                    </div>
-                </body>
-                
-                
-              
-              </main>
-            </div>
-              <footer data-include="/LicenseLab/include/footer.html"></footer>
-  </body>
-  </html>
-  
+  <script src="/LicenseLab/js/includeHTML.js" defer></script>
+  <script src="/LicenseLab/js/main.js"></script>
+</head>
+<body>
+  <header data-include="/LicenseLab/include/header.html"></header>
+  <div class="lgbody">
+    <main id="main-holder">
+      <div class="board_wrap">
+        <div class="board_title">
+          <strong>게시판</strong>
+          <p>게시판을 빠르고 정확하게 안내해드립니다.</p>
+        </div>
+        <div class="board_list_wrap">
+          <div class="board_list" id="postList">
+            <!-- 여기에 동적으로 게시글이 추가될 것입니다. -->
+          </div>
+          <!-- 페이지네이션 등의 UI 요소도 추가 가능 -->
+          <div class="board_page">
+            <a href="#" class="bt first"><<</a>
+            <a href="#" class="bt prev"><</a>
+            <a href="#" class="num on">1</a>
+            <a href="#" class="num">2</a>
+            <a href="#" class="num">3</a>
+            <a href="#" class="num">4</a>
+            <a href="#" class="num">5</a>
+            <a href="#" class="bt next">></a>
+            <a href="#" class="bt last">>></a>
+          </div>
+          <div class="bt_wrap">
+            <a href="write.html" class="on">등록</a>
+            <!--<a href="#">수정</a>-->
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer data-include="/LicenseLab/include/footer.html"></footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // 서버에서 게시글 목록을 가져와서 동적으로 리스트 생성
+      fetch('http://localhost:3000/api/posts')
+        .then(response => response.json())
+        .then(posts => {
+          const postListContainer = document.getElementById('postList');
+
+          posts.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.innerHTML = `
+              <div class="num">${post.id}</div>
+              <div class="title"><a href="view.html">${post.title}</a></div>
+              <div class="writer">${post.writer}</div>
+              <div class="date">${post.created_at}</div>
+              <div class="count">${post.views}</div>
+            `;
+
+            postListContainer.appendChild(postElement);
+          });
+        })
+        .catch(error => {
+          console.error('게시글 목록을 가져오는 데 실패했습니다.', error);
+        });
+    });
+  </script>
+</body>
+</html>
