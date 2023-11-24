@@ -36,6 +36,14 @@ document.addEventListener("DOMContentLoaded", function () {
     drawPieChart("pie-chart9", [36, 35, 20, 7, 3], ["#C3ABFF33", "#FFC4D733", "#FFF38933", "#D5FF9E33", "#C6DAFF33"]);
 
     drawPieChart("pie-chart10", [54, 22, 16, 5, 3], ["#C3ABFF33", "#FFC4D733", "#FFF38933", "#D5FF9E33", "#C6DAFF33"]);
+
+    drawPieChart("pie-chart11", [42, 31, 13, 8, 6], ["#C3ABFF33", "#FFC4D733", "#FFF38933", "#D5FF9E33", "#C6DAFF33"]);
+
+    drawPieChart("pie-chart12", [55, 16, 14, 12, 3], ["#C3ABFF33", "#FFC4D733", "#FFF38933", "#D5FF9E33", "#C6DAFF33"]);
+
+    drawPieChart("pie-chart13", [69, 18, 9, 2, 2], ["#C3ABFF33", "#FFC4D733", "#FFF38933", "#D5FF9E33", "#C6DAFF33"]);
+
+    drawPieChart("pie-chart14", [54, 31, 10, 3, 2], ["#C3ABFF33", "#FFC4D733", "#FFF38933", "#D5FF9E33", "#C6DAFF33"]);
   });
   
   // 파이 차트를 그리는 함수
