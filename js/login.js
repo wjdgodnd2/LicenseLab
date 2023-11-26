@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
   updateMenu();
 
   signInLink.addEventListener("click", function () {
+    e.preventDefault();
     if (isLoggedIn) {
       // Logout 상태에서 클릭하면 다시 Sign In 상태로 변경
       isLoggedIn = false;
