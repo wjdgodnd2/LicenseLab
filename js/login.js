@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateMenu() {
     if (isLoggedIn) {
-      console.log("Sign In link clicked!");
       signInLink.innerText = 'Logout';
       // 로그인 상태에 따른 추가 로직 또는 메뉴 항목을 여기에 추가할 수 있습니다.
     } else {
