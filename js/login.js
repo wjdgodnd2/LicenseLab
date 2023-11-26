@@ -35,4 +35,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 로그인 상태 초기화
   updateMenu();
+  
+  signInLink.addEventListener("click", function () {
+    if (isLoggedIn) {
+      // Logout 상태에서 클릭하면 다시 Sign In 상태로 변경
+      isLoggedIn = false;
+      updateMenu();
+    } else {
+      // Sign In 상태에서 클릭하면 로그인 페이지로 이동
+      window.location.href = "/LicenseLab/signin/login.html";
+    }
+  });
 });
