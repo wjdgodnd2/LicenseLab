@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (username === "admin" && password === "admin") {
       alert("로그인 성공!");
       window.location.href = "/LicenseLab/index.html";
-      isLoggedIn = !isLoggedIn;
+      isLoggedIn = true;
       updateMenu();
     } else {
       alert("아이디 혹은 비밀번호를 잘못 입력하였습니다.");
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 로그인 상태 초기화
   updateMenu();
-  
+
   signInLink.addEventListener("click", function () {
     if (isLoggedIn) {
       // Logout 상태에서 클릭하면 다시 Sign In 상태로 변경
