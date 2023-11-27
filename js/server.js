@@ -4,7 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
-const port = 5500;
+const port = 3000;
 const dbFilePath = 'mydatabase.db';
 
 // 데이터베이스 파일이 없으면 생성
