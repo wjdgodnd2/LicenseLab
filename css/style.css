@@ -282,20 +282,11 @@ a {
     resize: vertical;
 }
 
-.bt_wrap button {
-    display: inline-block;
-    min-width: 80px;
-    margin-right: 10px;
-    padding: 10px;
-    border: 1px solid #000;
-    border-radius: 2px;
-    font-size: 1.4rem;
-}
-
+.bt_wrap button,
 .bt_wrap a {
     display: inline-block;
     min-width: 80px;
-    margin-left: 10px;
+    margin-right: 10px;
     padding: 10px;
     border: 1px solid #000;
     border-radius: 2px;
