@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const app = express();
 const port = 3000;
-const dbFilePath = 'C:\\Users\\user\\Desktop\\sqlite-tools-win-x64-3440200\\mydatabase.db';
+const dbFilePath = 'mydatabase.db';
 
 // 데이터베이스 파일이 없으면 생성
 if (!fs.existsSync(dbFilePath)) {
