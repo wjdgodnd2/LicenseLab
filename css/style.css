@@ -281,6 +281,7 @@ a {
     border: 0;
     resize: vertical;
 }
+
 .bt_wrap button {
     display: inline-block;
     min-width: 80px;
