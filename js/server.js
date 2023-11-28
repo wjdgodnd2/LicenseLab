@@ -4,7 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
-const port = process.env.PORT || 3000; // 포트 변경 가능
+const port = process.env.PORT || 3000;
 
 // 데이터베이스 파일이 없으면 생성
 if (!fs.existsSync('mydatabase.db')) {
@@ -66,6 +66,73 @@ app.post('/api/posts', (req, res) => {
       }
     }
   );
+});
+
+// 게시물 수정
+app.put('/api/posts/:id', (req, res) => {
+  const postId = req.params.id;
+  const { title, writer, password, content } = req.body;
+
+  if (!title || !writer || !content) {
+    return res.status(400).json({ error: '제목, 글쓴이, 내용은 필수 입력 사항입니다.' });
+  }
+
+  // 비밀번호 검사 로직 추가
+  db.get('SELECT * FROM posts WHERE id = ?', [postId], (err, row) => {
+    if (err) {
+      console.error('게시물 조회 중 오류 발생:', err.message);
+      return res.status(500).json({ error: '내부 서버 오류' });
+    }
+
+    if (!row) {
+      return res.status(404).json({ error: '해당 ID의 게시물을 찾을 수 없습니다.' });
+    }
+
+    if (row.password !== password) {
+      return res.status(401).json({ error: '비밀번호가 일치하지 않습니다.' });
+    }
+
+    // 비밀번호가 일치하면 게시물 수정
+    db.run(
+      'UPDATE posts SET title = ?, writer = ?, content = ? WHERE id = ?',
+      [title, writer, content, postId],
+      (err) => {
+        if (err) {
+          console.error('게시물 수정 중 오류 발생:', err.message);
+          return res.status(500).json({ error: '내부 서버 오류' });
+        }
+
+        res.json({ id: postId });
+      }
+    );
+  });
+});
+
+// 게시물 삭제
+app.delete('/api/posts/:id', (req, res) => {
+  const postId = req.params.id;
+
+  // 비밀번호 검사 로직 추가
+  db.get('SELECT * FROM posts WHERE id = ?', [postId], (err, row) => {
+    if (err) {
+      console.error('게시물 조회 중 오류 발생:', err.message);
+      return res.status(500).json({ error: '내부 서버 오류' });
+    }
+
+    if (!row) {
+      return res.status(404).json({ error: '해당 ID의 게시물을 찾을 수 없습니다.' });
+    }
+
+    // 비밀번호가 일치하면 게시물 삭제
+    db.run('DELETE FROM posts WHERE id = ?', [postId], (err) => {
+      if (err) {
+        console.error('게시물 삭제 중 오류 발생:', err.message);
+        return res.status(500).json({ error: '내부 서버 오류' });
+      }
+
+      res.json({ id: postId });
+    });
+  });
 });
 
 // 서버 시작
