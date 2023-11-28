@@ -95,7 +95,7 @@
                         const writer = document.getElementById('writerInput').value;
                         const content = document.getElementById('contentInput').value;
 
-                        return fetch(`http://localhost:3000/api/posts/${postId}`, {
+                        return fetch(`http://localhost:3000/api/posts`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
