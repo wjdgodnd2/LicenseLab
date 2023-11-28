@@ -50,8 +50,8 @@
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('postId');
 
-            function getPostData() {
-                return fetch(`http://localhost:3000/api/posts`)
+            function getPostData(postId) {
+                return fetch(`http://localhost:3000/api/posts/${postId}`)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -62,12 +62,6 @@
                         console.error('게시글 정보를 가져오는 데 실패했습니다.', error);
                     });
             }
-
-            getPostData()
-                .then(post => {
-                console.log(post); // 서버 응답 확인
-                fillForm(post);
-            });
 
             function fillForm(post) {
                 document.getElementById('titleInput').value = post.title;
@@ -84,7 +78,7 @@
                     return;
                 }
 
-                getPostData()
+                getPostData(postId)
                     .then(post => {
                         // 입력한 비밀번호와 게시글의 비밀번호 비교
                         if (password !== post.password) {
@@ -96,7 +90,7 @@
                         const writer = document.getElementById('writerInput').value;
                         const content = document.getElementById('contentInput').value;
 
-                        return fetch(`http://localhost:3000/api/posts`, {
+                        return fetch(`http://localhost:3000/api/posts/${postId}`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -132,7 +126,7 @@
             });
 
             // 초기 데이터 로딩
-            getPostData().then(fillForm);
+            getPostData(postId).then(fillForm);
         });
     </script>
 </body>
