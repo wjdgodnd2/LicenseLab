@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자격증 등록</title>
+    <link rel="stylesheet" href="/LicenseLab/css/Mypage.css">
+</head>
+<body>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>정 보 입력</strong>
+        </div>
+        <div class="board_write_wrap">
+            <div class="board_write">
+                <form id="writeForm">
+                    <div class="title">
+                        <dl>
+                            <dt>자격증 이름</dt>
+                            <dd><input type="text" id="titleInput" placeholder="자격증 입력"></dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <dl>
+                            <dt>취득일</dt>
+                            <dd><input type="text" id="writerInput" placeholder="자격증 취득일 입력"></dd>
+                        </dl>
+                    </div>
+                </form>
+            </div>
+            <div class="bt_wrap">
+                <button href = "list.html" type="button" onclick="submitPost()">등록</button>
+                <a href="Mypage.html">취소</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitPost() {
+          const title = document.getElementById('titleInput').value;
+          const writer = document.getElementById('writerInput').value;
+          const password = document.getElementById('passwordInput').value;
+          const content = document.getElementById('contentInput').value;
+    
+          fetch('http://localhost:3000/api/posts', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  title: title,
+                  writer: writer,
+                  password: password,
+                  content: content,
+              }),
+          })
+          .then(response => response.json())
+          .then(post => {
+              window.location.href = 'list.html';
+          })
+          .catch(error => {
+              console.error('게시글을 등록하는 데 실패했습니다.', error);
+          });
+        }
+      </script>
+</body>
+</html>
