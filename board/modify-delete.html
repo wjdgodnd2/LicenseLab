@@ -46,62 +46,65 @@
     </div>
 
     <script>
-        // URL에서 게시물 ID 추출
-        const urlParams = new URLSearchParams(window.location.search);
-        const postId = urlParams.get('postId');
+        document.addEventListener('DOMContentLoaded', function () {
+            // URL에서 게시물 ID 추출
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('postId');
     
-        // 게시물 세부 정보를 가져와 기존 데이터로 폼 필드를 채웁니다.
-        fetch(`http://localhost:3000/api/posts/${postId}`)
-            .then(response => response.json())
-            .then(post => {
-                document.getElementById('titleInput').value = post.title;
-                document.getElementById('writerInput').value = post.writer;
-                document.getElementById('passwordInput').value = ''; // 비밀번호는 초기화
-                document.getElementById('contentInput').value = post.content;
-            })
-            .catch(error => {
-                console.error('게시글 정보를 가져오는 데 실패했습니다.', error);
-            });
+            // 게시물 세부 정보를 가져와 기존 데이터로 폼 필드를 채웁니다.
+            fetch(`http://localhost:3000/api/posts/${postId}`)
+                .then(response => response.json())
+                .then(post => {
+                    document.getElementById('titleInput').value = post.title;
+                    document.getElementById('writerInput').value = post.writer;
+                    // 비밀번호는 초기화하지 않도록 수정
+                    // document.getElementById('passwordInput').value = '';
+                    document.getElementById('contentInput').value = post.content;
+                })
+                .catch(error => {
+                    console.error('게시글 정보를 가져오는 데 실패했습니다.', error);
+                });
     
-        function submitModify() {
-            const title = document.getElementById('titleInput').value;
-            const writer = document.getElementById('writerInput').value;
-            const password = document.getElementById('passwordInput').value;
-            const content = document.getElementById('contentInput').value;
+            function submitModify() {
+                const title = document.getElementById('titleInput').value;
+                const writer = document.getElementById('writerInput').value;
+                const password = document.getElementById('passwordInput').value;
+                const content = document.getElementById('contentInput').value;
     
-            fetch(`http://localhost:3000/api/posts/${postId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    title: title,
-                    writer: writer,
-                    password: password,
-                    content: content,
-                }),
-            })
-            .then(response => response.json())
-            .then(post => {
-                window.location.href = 'list.html';
-            })
-            .catch(error => {
-                console.error('게시글을 수정하는 데 실패했습니다.', error);
-            });
-        }
+                fetch(`http://localhost:3000/api/posts/${postId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        writer: writer,
+                        password: password, // 비밀번호도 전송
+                        content: content,
+                    }),
+                })
+                .then(response => response.json())
+                .then(post => {
+                    window.location.href = 'list.html';
+                })
+                .catch(error => {
+                    console.error('게시글을 수정하는 데 실패했습니다.', error);
+                });
+            }
     
-        function submitDelete() {
-            fetch(`http://localhost:3000/api/posts/${postId}`, {
-                method: 'DELETE',
-            })
-            .then(response => response.json())
-            .then(() => {
-                window.location.href = 'list.html';
-            })
-            .catch(error => {
-                console.error('게시글을 삭제하는 데 실패했습니다.', error);
-            });
-        }
+            function submitDelete() {
+                fetch(`http://localhost:3000/api/posts/${postId}`, {
+                    method: 'DELETE',
+                })
+                .then(response => response.json())
+                .then(() => {
+                    window.location.href = 'list.html';
+                })
+                .catch(error => {
+                    console.error('게시글을 삭제하는 데 실패했습니다.', error);
+                });
+            }
+        });
     </script>
 </body>
 </html>
