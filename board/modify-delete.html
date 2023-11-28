@@ -47,87 +47,87 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const postId = urlParams.get('postId');
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('postId');
 
-            function getPostData(postId) {
-                return fetch(`http://localhost:3000/api/posts/${postId}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! Status: ${response.status}`);
-                        }
-                        return response.json();
-                    })
-                    .catch(error => {
-                        console.error('게시글 정보를 가져오는 데 실패했습니다.', error);
-                    });
-            }
+    function getPostData(postId) {
+        return fetch(`http://localhost:3000/api/posts/${postId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .catch(error => {
+                console.error('게시글 정보를 가져오는 데 실패했습니다.', error);
+            });
+    }
 
-            function fillForm(post) {
-                document.getElementById('titleInput').value = post.title;
-                document.getElementById('writerInput').value = post.writer;
-                document.getElementById('contentInput').value = post.content;
-            }
+    function fillForm(post) {
+        document.getElementById('titleInput').value = post.title;
+        document.getElementById('writerInput').value = post.writer;
+        document.getElementById('contentInput').value = post.content;
+    }
 
-            // 수정 버튼 클릭 시
-            document.getElementById('modifyBtn').addEventListener('click', function () {
-                // 비밀번호 입력 여부 확인
-                const password = document.getElementById('passwordInput').value;
-                if (!password) {
-                    alert('비밀번호를 입력하세요.');
+    // 수정 버튼 클릭 시
+    document.getElementById('modifyBtn').addEventListener('click', function () {
+        // 비밀번호 입력 여부 확인
+        const password = document.getElementById('passwordInput').value;
+        if (!password) {
+            alert('비밀번호를 입력하세요.');
+            return;
+        }
+
+        getPostData(postId)
+            .then(post => {
+                // 입력한 비밀번호와 게시글의 비밀번호 비교
+                if (password !== post.password) {
+                    alert('비밀번호가 일치하지 않습니다.');
                     return;
                 }
 
-                getPostData(postId)
-                    .then(post => {
-                        // 입력한 비밀번호와 게시글의 비밀번호 비교
-                        if (password !== post.password) {
-                            alert('비밀번호가 일치하지 않습니다.');
-                            return;
-                        }
+                const title = document.getElementById('titleInput').value;
+                const writer = document.getElementById('writerInput').value;
+                const content = document.getElementById('contentInput').value;
 
-                        const title = document.getElementById('titleInput').value;
-                        const writer = document.getElementById('writerInput').value;
-                        const content = document.getElementById('contentInput').value;
-
-                        return fetch(`http://localhost:3000/api/posts/${postId}`, {
-                            method: 'PUT',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                title: title,
-                                writer: writer,
-                                content: content,
-                            }),
-                        });
-                    })
-                    .then(response => response.json())
-                    .then(post => {
-                        window.location.href = 'list.html';
-                    })
-                    .catch(error => {
-                        console.error('게시글을 수정하는 데 실패했습니다.', error);
-                    });
-            });
-
-            // 삭제 버튼 클릭 시
-            document.getElementById('deleteBtn').addEventListener('click', function () {
-                fetch(`http://localhost:3000/api/posts/${postId}`, {
-                    method: 'DELETE',
-                })
-                .then(response => response.json())
-                .then(() => {
-                    window.location.href = 'list.html';
-                })
-                .catch(error => {
-                    console.error('게시글을 삭제하는 데 실패했습니다.', error);
+                return fetch(`http://localhost:3000/api/posts/${postId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        title: title,
+                        writer: writer,
+                        content: content,
+                    }),
                 });
+            })
+            .then(response => response.json())
+            .then(post => {
+                window.location.href = 'list.html';
+            })
+            .catch(error => {
+                console.error('게시글을 수정하는 데 실패했습니다.', error);
             });
+    });
 
-            // 초기 데이터 로딩
-            getPostData(postId).then(fillForm);
+    // 삭제 버튼 클릭 시
+    document.getElementById('deleteBtn').addEventListener('click', function () {
+        fetch(`http://localhost:3000/api/posts/${postId}`, {
+            method: 'DELETE',
+        })
+        .then(response => response.json())
+        .then(() => {
+            window.location.href = 'list.html';
+        })
+        .catch(error => {
+            console.error('게시글을 삭제하는 데 실패했습니다.', error);
         });
+    });
+
+    // 초기 데이터 로딩
+    getPostData(postId).then(fillForm);
+});
     </script>
 </body>
 </html>
