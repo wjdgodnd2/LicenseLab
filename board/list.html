@@ -1,6 +1,7 @@
+<!-- list.html 수정 -->
+
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,6 @@
   <script src="/LicenseLab/js/includeHTML.js" defer></script>
   <script src="/LicenseLab/js/main.js"></script>
 </head>
-
 <body>
   <header data-include="/LicenseLab/include/header.html"></header>
   <div class="lgbody">
@@ -32,9 +32,9 @@
             <!-- 여기에 동적으로 게시글이 추가될 것입니다. -->
             <div class="top">
               <div class="num">번호</div>
-              <div class="title">
-                <a href="#" onclick="console.log('클릭 이벤트 발생'); openModifyDeletePage('${post.id}')">제목</a>
-              </div>
+            <div class="title">
+              <a href="#" onclick="console.log('클릭 이벤트 발생'); openModifyDeletePage('${post.id}')">제목</a>
+            </div>
               <div class="writer">글쓴이</div>
               <div class="date">작성일</div>
               <div class="count">조회</div>
@@ -53,32 +53,32 @@
   <footer data-include="/LicenseLab/include/footer.html"></footer>
 
   <script type="module">
-    window.openModifyDeletePage = openModifyDeletePage;
+  window.openModifyDeletePage = openModifyDeletePage;
     document.addEventListener('DOMContentLoaded', function () {
-      fetch('http://localhost:3000/api/posts')
-        .then(response => response.json())
-        .then(posts => {
-          generatePagination(posts.length);
+        fetch('http://localhost:3000/api/posts')
+            .then(response => response.json())
+            .then(posts => {
+                const postListContainer = document.getElementById('postList');
 
-          // 페이지네이션 생성 함수 호출
-          const postListContainer = document.getElementById('postList');
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.innerHTML = `
+                        <div class="num">${post.id}</div>
+                        <div class="title"><a href="#" onclick="openModifyDeletePage(${post.id})">${post.title}</a></div>
+                        <div class="writer">${post.writer}</div>
+                        <div class="date">${post.created_at}</div>
+                        <div class="count">${post.views}</div>
+                    `;
 
-          posts.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.innerHTML = `
-                    <div class="num">${post.id}</div>
-                    <div class="title"><a href="#" onclick="openModifyDeletePage(${post.id})">${post.title}</a></div>
-                    <div class="writer">${post.writer}</div>
-                    <div class="date">${post.created_at}</div>
-                    <div class="count">${post.views}</div>
-                `;
+                    postListContainer.appendChild(postElement);
+                });
 
-            postListContainer.appendChild(postElement);
-          });
-        })
-        .catch(error => {
-          console.error('게시글 목록을 가져오는 데 실패했습니다.', error);
-        });
+                // 페이지네이션 생성 함수 호출
+                generatePagination(posts.length);
+            })
+            .catch(error => {
+                console.error('게시글 목록을 가져오는 데 실패했습니다.', error);
+            });
     });
 
     function openModifyDeletePage(postId) {
@@ -93,7 +93,7 @@
       const totalPages = Math.ceil(totalPosts / postsPerPage); // 전체 페이지 수 계산
 
       const paginationContainer = document.querySelector('.board_page');
-
+      
       for (let i = 1; i <= totalPages; i++) {
         const pageLink = document.createElement('a');
         pageLink.href = '#';
@@ -106,43 +106,12 @@
 
         paginationContainer.appendChild(pageLink);
       }
-
-      // 페이지가 변경될 때 첫 번째 페이지의 게시물을 보여주도록 호출
-      goToPage(1);
     }
 
     function goToPage(pageNumber) {
-      // 페이지당 게시물 수
-      const postsPerPage = 5;
-
-      // 현재 페이지의 첫 번째 게시물 인덱스 계산
-      const startIndex = (pageNumber - 1) * postsPerPage;
-
-      // API 호출 시 페이지와 게시물 수를 전달하여 해당 페이지의 게시물을 가져옴
-      fetch(`http://localhost:3000/api/posts?_page=${pageNumber}&_limit=${postsPerPage}`)
-        .then(response => response.json())
-        .then(posts => {
-          const postListContainer = document.getElementById('postList');
-          postListContainer.innerHTML = ''; // 현재 게시물 목록을 비워줌
-
-          posts.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.innerHTML = `
-                    <div class="num">${post.id}</div>
-                    <div class="title"><a href="#" onclick="openModifyDeletePage(${post.id})">${post.title}</a></div>
-                    <div class="writer">${post.writer}</div>
-                    <div class="date">${post.created_at}</div>
-                    <div class="count">${post.views}</div>
-                `;
-
-            postListContainer.appendChild(postElement);
-          });
-        })
-        .catch(error => {
-          console.error('게시글 목록을 가져오는 데 실패했습니다.', error);
-        });
+      // 선택한 페이지에 대한 게시물을 가져와 표시하는 논리를 구현하세요
+      console.log(`${pageNumber} 페이지로 이동`);
     }
   </script>
 </body>
-
 </html>
