@@ -62,6 +62,7 @@ a {
 }
 .board_list {
     width: 100%;
+    border-top: 2px solid #000;
     display: flex; /* Flexbox 레이아웃 사용 */
     flex-direction: column; /* 세로 방향으로 정렬 */
     align-items: center; /* 가운데 정렬 */
