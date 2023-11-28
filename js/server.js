@@ -4,12 +4,11 @@ const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
-const port = 3000;
-const dbFilePath = 'mydatabase.db';
+const port = process.env.PORT || 3000; // 포트 변경 가능
 
 // 데이터베이스 파일이 없으면 생성
-if (!fs.existsSync(dbFilePath)) {
-  const db = new sqlite3.Database(dbFilePath);
+if (!fs.existsSync('mydatabase.db')) {
+  const db = new sqlite3.Database('mydatabase.db');
 
   // 테이블 생성 (posts 테이블 생성)
   db.serialize(() => {
@@ -29,7 +28,7 @@ if (!fs.existsSync(dbFilePath)) {
 }
 
 // SQLite 데이터베이스 연결
-const db = new sqlite3.Database(dbFilePath);
+const db = new sqlite3.Database('mydatabase.db');
 
 // Express 미들웨어 설정
 app.use(express.json());
