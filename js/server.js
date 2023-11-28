@@ -4,7 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 
 const app = express();
-const port = process.env.PORT || 3000; // 포트 변경 가능
+const port = process.env.PORT || 5500; // 포트 변경 가능
 
 // 데이터베이스 파일이 없으면 생성
 if (!fs.existsSync('mydatabase.db')) {
