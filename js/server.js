@@ -1,14 +1,14 @@
-const express = require('express');
+import express, { json } from 'express';
 const sqlite3 = require('sqlite3').verbose();
-const cors = require('cors');
-const fs = require('fs');
+import cors from 'cors';
+import { existsSync } from 'fs';
 
 const app = express();
 const port = 3000;
 const dbFilePath = 'C:\\Users\\user\\Desktop\\sqlite-tools-win-x64-3440200\\mydatabase.db';
 
 // 데이터베이스 파일이 없으면 생성
-if (!fs.existsSync(dbFilePath)) {
+if (!existsSync(dbFilePath)) {
   const db = new sqlite3.Database(dbFilePath);
 
   // 테이블 생성 (posts 테이블 생성)
@@ -32,7 +32,7 @@ if (!fs.existsSync(dbFilePath)) {
 const db = new sqlite3.Database(dbFilePath);
 
 // Express 미들웨어 설정
-app.use(express.json());
+app.use(json());
 app.use(cors());
 
 // 게시물 목록 가져오기
