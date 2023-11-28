@@ -19,7 +19,8 @@ if (!fs.existsSync('mydatabase.db')) {
         writer TEXT,
         password TEXT,
         content TEXT,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        views INTEGER DEFAULT 0
       )
     `);
   });
@@ -131,6 +132,32 @@ app.delete('/api/posts/:id', (req, res) => {
       }
 
       res.json({ id: postId });
+    });
+  });
+});
+
+// 게시물 조회
+app.get('/api/posts/:id', (req, res) => {
+  const postId = req.params.id;
+
+  db.get('SELECT * FROM posts WHERE id = ?', [postId], (err, row) => {
+    if (err) {
+      console.error('게시물 조회 중 오류 발생:', err.message);
+      return res.status(500).json({ error: '내부 서버 오류' });
+    }
+
+    if (!row) {
+      return res.status(404).json({ error: '해당 ID의 게시물을 찾을 수 없습니다.' });
+    }
+
+    // 조회수 증가
+    db.run('UPDATE posts SET views = views + 1 WHERE id = ?', [postId], (err) => {
+      if (err) {
+        console.error('조회수 증가 중 오류 발생:', err.message);
+        // 오류가 발생해도 클라이언트에는 영향을 미치지 않도록 계속 진행
+      }
+
+      res.json(row);
     });
   });
 });
