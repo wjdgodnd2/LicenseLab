@@ -85,7 +85,7 @@ app.put('/api/posts/:id', (req, res) => {
     }
 
     if (!row) {
-      return res.status(204).json({ error: '해당 ID의 게시물을 찾을 수 없습니다.' });
+      return res.status(404).json({ error: '해당 ID의 게시물을 찾을 수 없습니다.' });
     }
 
     if (row.password !== password) {
