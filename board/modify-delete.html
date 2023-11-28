@@ -51,7 +51,7 @@
             const postId = urlParams.get('postId');
 
             function getPostData(postId) {
-                return fetch(`http://localhost:3000/api/posts`)
+                return fetch(`http://localhost:3000/api/posts/${postId}`)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -91,7 +91,7 @@
                         const content = document.getElementById('contentInput').value;
 
                         return fetch(`http://localhost:3000/api/posts/${postId}`, {
-                            method: 'UPDATE',
+                            method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
                             },
