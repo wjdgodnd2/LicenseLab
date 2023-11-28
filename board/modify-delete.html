@@ -50,7 +50,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('postId');
 
-            function getPostData(postId) {
+            function getPostData() {
                 return fetch(`http://localhost:3000/api/posts`)
                     .then(response => {
                         if (!response.ok) {
@@ -63,10 +63,11 @@
                     });
             }
 
-            getPostData(postId)
+            getPostData()
                 .then(post => {
-                    fillForm(post);
-                });
+                console.log(post); // 서버 응답 확인
+                fillForm(post);
+            });
 
             function fillForm(post) {
                 document.getElementById('titleInput').value = post.title;
@@ -83,7 +84,7 @@
                     return;
                 }
 
-                getPostData(postId)
+                getPostData()
                     .then(post => {
                         // 입력한 비밀번호와 게시글의 비밀번호 비교
                         if (password !== post.password) {
@@ -95,7 +96,7 @@
                         const writer = document.getElementById('writerInput').value;
                         const content = document.getElementById('contentInput').value;
 
-                        return fetch(`http://localhost:3000/api/posts`, {
+                        return fetch(`http://localhost:3000/api/posts/${postId}`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -118,7 +119,7 @@
 
             // 삭제 버튼 클릭 시
             document.getElementById('deleteBtn').addEventListener('click', function () {
-                fetch(`http://localhost:3000/api/posts`, {
+                fetch(`http://localhost:3000/api/posts/${postId}`, {
                     method: 'DELETE',
                 })
                 .then(response => response.json())
@@ -129,6 +130,9 @@
                     console.error('게시글을 삭제하는 데 실패했습니다.', error);
                 });
             });
+
+            // 초기 데이터 로딩
+            getPostData().then(fillForm);
         });
     </script>
 </body>
