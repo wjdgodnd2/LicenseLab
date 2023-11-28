@@ -50,7 +50,6 @@
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('postId');
 
-            // 함수를 정의하여 중복 코드 제거
             function getPostData() {
                 return fetch(`http://localhost:3000/api/posts/${postId}`)
                     .then(response => {
@@ -72,11 +71,23 @@
 
             // 수정 버튼 클릭 시
             document.getElementById('modifyBtn').addEventListener('click', function () {
+                // 비밀번호 입력 여부 확인
+                const password = document.getElementById('passwordInput').value;
+                if (!password) {
+                    alert('비밀번호를 입력하세요.');
+                    return;
+                }
+
                 getPostData()
                     .then(post => {
+                        // 입력한 비밀번호와 게시글의 비밀번호 비교
+                        if (password !== post.password) {
+                            alert('비밀번호가 일치하지 않습니다.');
+                            return;
+                        }
+
                         const title = document.getElementById('titleInput').value;
                         const writer = document.getElementById('writerInput').value;
-                        const password = document.getElementById('passwordInput').value;
                         const content = document.getElementById('contentInput').value;
 
                         return fetch(`http://localhost:3000/api/posts/${postId}`, {
@@ -87,7 +98,6 @@
                             body: JSON.stringify({
                                 title: title,
                                 writer: writer,
-                                password: password,
                                 content: content,
                             }),
                         });
