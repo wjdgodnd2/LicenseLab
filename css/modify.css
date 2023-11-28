@@ -1,0 +1,99 @@
+
+/* css.css */
+
+/* Reset some default browser styles */
+body, h1, h2, h3, p, ul, li, figure, figcaption, blockquote, dl, dd {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply a background color to the body */
+body {
+    background-color: #f5f5f5;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* Center the board_wrap */
+.board_wrap {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the board_title */
+.board_title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style the board_modify_delete_wrap */
+.board_modify_delete_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style the form */
+#modifyForm {
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Style the form inputs and textarea */
+#modifyForm input,
+#modifyForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+/* Style the buttons and links */
+.bt_wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+button, a {
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+button {
+    background-color: #007BFF;
+    border: none;
+}
+
+a {
+    background-color: #6C757D;
+}
+
+/* Change link color on hover */
+a:hover {
+    background-color: #495057;
+}
+
+/* Optional: Style the buttons to look like a navigation bar */
+.bt_wrap {
+    background-color: #007BFF;
+}
+
+.bt_wrap button, .bt_wrap a {
+    flex: 1;
+    margin: 0 5px;
+    border: none;
+}
+
+/* Responsive styles: Adjust the board_wrap width on smaller screens */
+@media (max-width: 600px) {
+    .board_wrap {
+        width: 100%;
+        box-shadow: none;
+    }
+}
