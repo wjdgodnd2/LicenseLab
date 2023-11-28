@@ -17,7 +17,7 @@ a {
 }
 
 .board_wrap {
-    width: 800px;
+    width: 1000px;
     height: 600px;
     margin: 100px auto;
     padding: 40px;
@@ -108,7 +108,7 @@ a {
 }
 
 .board_list .date {
-    width: 20%;
+    width: 10%;
 }
 
 .board_list .count {
