@@ -63,28 +63,33 @@
 
   <script type="module">
     document.addEventListener('DOMContentLoaded', function () {
-      fetch('http://localhost:3000/api/posts')
-        .then(response => response.json())
-        .then(posts => {
-          const postListContainer = document.getElementById('postList');
+        fetch('http://localhost:3000/api/posts')
+            .then(response => response.json())
+            .then(posts => {
+                const postListContainer = document.getElementById('postList');
 
-          posts.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.innerHTML = `
-              <div class="num">${post.id}</div>
-              <div class="title"><a href="view.html">${post.title}</a></div>
-              <div class="writer">${post.writer}</div>
-              <div class="date">${post.created_at}</div>
-              <div class="count">${post.views}</div>
-            `;
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.innerHTML = `
+                        <div class="num">${post.id}</div>
+                        <div class="title"><a href="#" onclick="openModifyDeletePage(${post.id})">${post.title}</a></div>
+                        <div class="writer">${post.writer}</div>
+                        <div class="date">${post.created_at}</div>
+                        <div class="count">${post.views}</div>
+                    `;
 
-            postListContainer.appendChild(postElement);
-          });
-        })
-        .catch(error => {
-          console.error('게시글 목록을 가져오는 데 실패했습니다.', error);
-        });
+                    postListContainer.appendChild(postElement);
+                });
+            })
+            .catch(error => {
+                console.error('게시글 목록을 가져오는 데 실패했습니다.', error);
+            });
     });
-  </script>
+
+    function openModifyDeletePage(postId) {
+        // 게시물 ID를 URL 파라미터에 추가하여 modify-delete.html로 이동
+        window.location.href = `modify-delete.html?postId=${postId}`;
+    }
+</script>
 </body>
 </html>

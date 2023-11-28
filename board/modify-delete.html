@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판 - 수정 및 삭제</title>
+    <link rel="stylesheet" href="/LicenseLab/css/css.css">
+    <script src="/LicenseLab/js/server.js" defer></script>
+</head>
+<body>
+    <div class="board_wrap">
+        <div class="board_title">
+            <strong>게시판</strong>
+            <p>게시판을 빠르고 정확하게 안내해드립니다.</p>
+        </div>
+        <div class="board_modify_delete_wrap">
+            <div class="board_modify_delete">
+                <form id="modifyForm">
+                    <div class="title">
+                        <dl>
+                            <dt>제목</dt>
+                            <dd><input type="text" id="titleInput" placeholder="수정할 제목 입력"></dd>
+                        </dl>
+                    </div>
+                    <div class="info">
+                        <dl>
+                            <dt>글쓴이</dt>
+                            <dd><input type="text" id="writerInput" placeholder="수정할 글쓴이 입력"></dd>
+                        </dl>
+                        <dl>
+                            <dt>비밀번호</dt>
+                            <dd><input type="password" id="passwordInput" placeholder="비밀번호 입력"></dd>
+                        </dl>
+                    </div>
+                    <div class="cont">
+                        <textarea id="contentInput" placeholder="수정할 내용 입력"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="bt_wrap">
+                <button type="button" onclick="submitModify()">수정</button>
+                <button type="button" onclick="submitDelete()">삭제</button>
+                <a href="list.html">취소</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postId = urlParams.get('postId');
+    
+            if (postId) {
+                fetch(`http://localhost:3000/api/posts/${postId}`)
+                    .then(response => response.json())
+                    .then(post => {
+                        // 게시물 데이터를 폼 필드에 채움
+                        document.getElementById('titleInput').value = post.title;
+                        document.getElementById('writerInput').value = post.writer;
+                        // 여기에 비밀번호와 내용도 채우도록 추가
+    
+                        // ...
+                    })
+                    .catch(error => {
+                        console.error('게시글을 불러오는 데 실패했습니다.', error);
+                    });
+            }
+        });
+
+        function submitDelete() {
+          fetch(`http://localhost:3000/api/posts/${postId}`, {
+              method: 'DELETE',
+          })
+          .then(response => response.json())
+          .then(() => {
+              window.location.href = 'list.html';
+          })
+          .catch(error => {
+              console.error('게시글을 삭제하는 데 실패했습니다.', error);
+          });
+        }
+    </script>
+</body>
+</html>
