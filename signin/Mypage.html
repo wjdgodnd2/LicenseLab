@@ -1,0 +1,62 @@
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마이 페이지</title>
+  <link rel="icon" href="/LicenseLab/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <link rel="stylesheet" href="/LicenseLab/css/Mypage.css">
+    <link rel="stylesheet" href="/LicenseLab/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet" />
+    <script src="/LicenseLab/js/includeHTML.js" defer></script>
+    <script src="/LicenseLab/js/main.js" ></script>
+    <script src="/LicenseLab/js/mypage.js" defer></script>
+  </head>
+  <body>
+    <header data-include="/LicenseLab/include/header.html"></header>
+    <div class="Mybody">
+              <main id="main-holder">
+               
+                <h1 id="mypage-header">마이 페이지</h1><br/><br/>
+                
+                <form id="mypage-form">
+                  <div>
+                    아이디 : <strong id="user_id">admin</strong><br/><br/>
+                    
+                    비밀번호 : <strong id="user_psw">*****</strong><br/><br/>
+
+                    이름 : <strong id="user_name">홍길동</strong><br/><br/>
+                 
+                    휴대폰 번호 : <strong id="user_num">010-1234-1234</strong><br/><br/>
+                  
+                    이메일 : <strong id="user_email">email@naver.com</strong><br/><br/>
+                  </div>
+                  <div>
+                    <button id="modify">회원정보 수정</button>
+                    <button id="psw_modify">비밀번호 수정</button>
+                  </div>
+                  <div class="board_wrap">
+                    <div class="board_title">
+                      <strong>나의 자격증</strong>
+                    </div>
+                    <div class="board_list_wrap">
+                      <div class="board_list" id="postList">
+                        <!-- 여기에 동적으로 게시글이 추가될 것입니다. -->
+                        <div class="top">
+                            <div class="num">자격증 이름</div>
+                            <div class="title">취득일</div>
+                        </div> 
+                      </div>
+                      <!-- 페이지네이션 등의 UI 요소도 추가 가능 -->
+                    </div>
+                  </div>
+                </main>
+              </div>
+                </form>
+              </main>
+            </div>
+              <footer data-include="/LicenseLab/include/footer.html"></footer>
+  </body>

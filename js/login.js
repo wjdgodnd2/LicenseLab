@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (username === "admin" && password === "admin") {
       alert("로그인 성공!");
-      window.location.href = "/LicenseLab/index.html";
-      isLoggedIn = true;
+      window.location.href = "/LicenseLab/mainsub.html";
+      isLoggedIn = !isLoggedIn;
       updateMenu();
     } else {
       alert("아이디 혹은 비밀번호를 잘못 입력하였습니다.");

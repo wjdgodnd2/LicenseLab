@@ -1,4 +1,54 @@
-* {
+@import url(media.css);  
+
+html {
+    height: 100%;
+  }
+  
+  .Mybody {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background-color: #64b5fd;
+  }
+  
+  #main-holder {
+    width: 60%;
+    height: 60%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px 2px black;
+  }
+  
+  #mypage-form {
+    align-self: flex-start;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+  }
+
+  #mypage-header{
+    font-size: 3rem
+  }
+
+  #modify, #psw_modify{
+    background-color: skyblue;
+    display: inline-block;
+    min-width: 80px;
+    margin-left: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 2px;
+    font-size: 1.4rem;
+  }
+
+  /* 자격증 css */
+  * {
     margin: 0;
     padding: 0;
 }
@@ -29,11 +79,6 @@ a {
 
 .board_title strong {
     font-size: 3rem;
-}
-
-.board_title p {
-    margin-top: 5px;
-    font-size: 1.4rem;
 }
 
 .bt_wrap {
@@ -91,7 +136,7 @@ a {
 }
 
 .board_list .num {
-    width: 10%;
+    width: 30%;
 }
 
 .board_list .title {
@@ -101,18 +146,6 @@ a {
 
 .board_list .top .title {
     text-align: center;
-}
-
-.board_list .writer {
-    width: 10%;
-}
-
-.board_list .date {
-    width: 10%;
-}
-
-.board_list .count {
-    width: 10%;
 }
 
 .board_page {
@@ -200,7 +233,6 @@ a {
     display: inline-block;
     font-size: 1.4rem;
 }
-
 
 .board_view .info dl dd {
     margin-left: 10px;
