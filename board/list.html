@@ -63,8 +63,7 @@
 
   <script type="module">
     document.addEventListener('DOMContentLoaded', function () {
-      // fetch('http://localhost:3000/api/posts')
-      fetch('http://172.30.123.57:3000/api/posts')
+      fetch('http://localhost:3000/api/posts')
         .then(response => response.json())
         .then(posts => {
           const postListContainer = document.getElementById('postList');
