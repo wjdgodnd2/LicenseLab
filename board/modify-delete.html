@@ -63,6 +63,12 @@
                     });
             }
 
+            getPostData()
+                .then(post => {
+                console.log(post); // 서버 응답 확인
+                fillForm(post);
+            });
+            
             function fillForm(post) {
                 document.getElementById('titleInput').value = post.title;
                 document.getElementById('writerInput').value = post.writer;
