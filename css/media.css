@@ -1,4 +1,15 @@
 @media (max-width: 1000px) {
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .board_wrap {
+        width: 80%;
+    }s
     .board_wrap {
         width: 100%;
         min-width: 320px;
