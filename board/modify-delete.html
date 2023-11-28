@@ -46,26 +46,36 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const postId = urlParams.get('postId');
+        const postId = /* URL이나 다른 소스에서 게시물 ID를 가져와야 함 */
+
+        // 게시물 세부 정보를 가져와 기존 데이터로 폼 필드를 채웁니다.
+
+        function submitModify() {
+          const title = document.getElementById('titleInput').value;
+          const writer = document.getElementById('writerInput').value;
+          const password = document.getElementById('passwordInput').value;
+          const content = document.getElementById('contentInput').value;
     
-            if (postId) {
-                fetch(`http://localhost:3000/api/posts/${postId}`)
-                    .then(response => response.json())
-                    .then(post => {
-                        // 게시물 데이터를 폼 필드에 채움
-                        document.getElementById('titleInput').value = post.title;
-                        document.getElementById('writerInput').value = post.writer;
-                        // 여기에 비밀번호와 내용도 채우도록 추가
-    
-                        // ...
-                    })
-                    .catch(error => {
-                        console.error('게시글을 불러오는 데 실패했습니다.', error);
-                    });
-            }
-        });
+          fetch(`http://localhost:3000/api/posts/${postId}`, {
+              method: 'PUT',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  title: title,
+                  writer: writer,
+                  password: password,
+                  content: content,
+              }),
+          })
+          .then(response => response.json())
+          .then(post => {
+              window.location.href = 'list.html';
+          })
+          .catch(error => {
+              console.error('게시글을 수정하는 데 실패했습니다.', error);
+          });
+        }
 
         function submitDelete() {
           fetch(`http://localhost:3000/api/posts/${postId}`, {
