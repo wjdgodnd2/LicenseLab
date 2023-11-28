@@ -53,6 +53,7 @@
   <footer data-include="/LicenseLab/include/footer.html"></footer>
 
   <script type="module">
+  window.openModifyDeletePage = openModifyDeletePage;
     document.addEventListener('DOMContentLoaded', function () {
         fetch('http://localhost:3000/api/posts')
             .then(response => response.json())
