@@ -94,7 +94,10 @@ function generatePagination(totalPosts) {
 
     const paginationContainer = document.querySelector('.board_page');
 
-    for (let i = 1; i <= totalPages; i++) {
+    let groupStartPage = 1;
+    let groupEndPage = Math.min(5, totalPages);
+
+    for (let i = groupStartPage; i <= groupEndPage; i++) {
         const pageLink = document.createElement('a');
         pageLink.href = '#';
         pageLink.classList.add('num');
@@ -108,12 +111,16 @@ function generatePagination(totalPosts) {
     }
 
     // 초기 페이지로 이동하여 첫 페이지의 게시글 표시
-    goToPage(1, totalPages);
+    goToPage(groupStartPage, totalPages);
 }
 
-   // goToPage 함수 업데이트
+ // goToPage 함수 업데이트
 function goToPage(pageNumber, totalPages) {
     const postsPerPage = 5; // 페이지당 게시물 수
+    const groupNumber = Math.ceil(pageNumber / 5);
+    const groupStartPage = (groupNumber - 1) * 5 + 1;
+    const groupEndPage = Math.min(groupNumber * 5, totalPages);
+
     const startIdx = (pageNumber - 1) * postsPerPage;
     const endIdx = startIdx + postsPerPage;
 
@@ -150,11 +157,13 @@ function goToPage(pageNumber, totalPages) {
             // 페이지네이션 스타일 업데이트
             const paginationLinks = document.querySelectorAll('.board_page a');
             paginationLinks.forEach((link, index) => {
-                if (index === pageNumber - 1) {
+                const page = groupStartPage + index;
+                if (page === pageNumber) {
                     link.classList.add('on');
                 } else {
                     link.classList.remove('on');
                 }
+                link.textContent = page;
             });
         })
         .catch(error => {
