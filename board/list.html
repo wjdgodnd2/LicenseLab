@@ -87,7 +87,7 @@
       window.location.href = `modify-delete.html?postId=${postId}`;
     }
 
-    /// generatePagination 함수 업데이트
+    // generatePagination 함수 업데이트
 function generatePagination(totalPosts) {
     const postsPerPage = 5; // 페이지당 게시물 수
     const totalPages = Math.ceil(totalPosts / postsPerPage); // 전체 페이지 수 계산
@@ -102,19 +102,19 @@ function generatePagination(totalPosts) {
             pageLink.classList.add('on');
         }
         pageLink.textContent = i;
-        pageLink.addEventListener('click', () => goToPage(i - 1, totalPages)); // 여기에서 인덱스와 전체 페이지 수를 전달합니다
+        pageLink.addEventListener('click', () => goToPage(i, totalPages)); // 여기에서 페이지 번호와 전체 페이지 수를 전달합니다
 
         paginationContainer.appendChild(pageLink);
     }
 
-    // 페이지네이션 생성 후 첫 페이지의 게시글 표시
-    goToPage(0, totalPages);
+    // 초기 페이지로 이동하여 첫 페이지의 게시글 표시
+    goToPage(1, totalPages);
 }
 
-    // goToPage 함수 업데이트
+   // goToPage 함수 업데이트
 function goToPage(pageNumber, totalPages) {
     const postsPerPage = 5; // 페이지당 게시물 수
-    const startIdx = pageNumber * postsPerPage;
+    const startIdx = (pageNumber - 1) * postsPerPage;
     const endIdx = startIdx + postsPerPage;
 
     // 서버에서 가져온 게시글 배열
@@ -133,7 +133,7 @@ function goToPage(pageNumber, totalPages) {
                     if (posts[index]) {
                         element.style.display = 'block';
                         element.innerHTML = `
-                            <div class="num">${index + 1}</div>
+                            <div class="num">${index + 5}</div>
                             <div class="title"><a href="#" onclick="openModifyDeletePage(${posts[index].id})">${posts[index].title}</a></div>
                             <div class="writer">${posts[index].writer}</div>
                             <div class="date">${posts[index].created_at}</div>
@@ -150,7 +150,7 @@ function goToPage(pageNumber, totalPages) {
             // 페이지네이션 스타일 업데이트
             const paginationLinks = document.querySelectorAll('.board_page a');
             paginationLinks.forEach((link, index) => {
-                if (index === pageNumber) {
+                if (index === pageNumber - 1) {
                     link.classList.add('on');
                 } else {
                     link.classList.remove('on');
