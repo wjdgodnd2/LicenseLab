@@ -150,7 +150,7 @@ function goToPage(pageNumber, totalPages) {
             // 페이지네이션 스타일 업데이트
             const paginationLinks = document.querySelectorAll('.board_page a');
             paginationLinks.forEach((link, index) => {
-                if (index+5 === pageNumber - 5) {
+                if (index === pageNumber - 1) {
                     link.classList.add('on');
                 } else {
                     link.classList.remove('on');
