@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 - 수정 및 삭제</title>
     <link rel="stylesheet" href="/LicenseLab/css/css.css">
+    <link rel="stylesheet" href="/LicenseLab/css/main.css">
+    <script src="/LicenseLab/js/includeHTML.js" defer></script>
+    <script src="/LicenseLab/js/main.js"></script>
     <script src="/LicenseLab/js/server.js" defer></script>
 </head>
 <body>
+    <header data-include="/LicenseLab/include/header.html"></header>
     <div class="board_wrap">
         <div class="board_title">
             <strong>수정 및 삭제</strong>
@@ -129,5 +133,6 @@
             getPostData(postId).then(fillForm);
         });
     </script>
+    <footer data-include="/LicenseLab/include/footer.html"></footer>
 </body>
 </html>
