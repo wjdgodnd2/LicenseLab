@@ -58,24 +58,24 @@
         fetch('http://localhost:3000/api/posts')
             .then(response => response.json())
             .then(posts => {
-    const postListContainer = document.getElementById('postList');
+                const postListContainer = document.getElementById('postList');
 
-    posts.forEach((post, index) => {
-        const postElement = document.createElement('div');
-        postElement.innerHTML = `
-            <div class="num">${index + 1}</div>
-            <div class="title"><a href="#" onclick="openModifyDeletePage(${post.id})">${post.title}</a></div>
-            <div class="writer">${post.writer}</div>
-            <div class="date">${post.created_at}</div>
-            <div class="count">${post.views}</div>
-        `;
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.innerHTML = `
+                        <div class="num">${post.id}</div>
+                        <div class="title"><a href="#" onclick="openModifyDeletePage(${post.id})">${post.title}</a></div>
+                        <div class="writer">${post.writer}</div>
+                        <div class="date">${post.created_at}</div>
+                        <div class="count">${post.views}</div>
+                    `;
 
-        postListContainer.appendChild(postElement);
-    });
+                    postListContainer.appendChild(postElement);
+                });
 
-    // 페이지네이션 생성 함수 호출
-    generatePagination(posts.length);
-})
+                // 페이지네이션 생성 함수 호출
+                generatePagination(posts.length);
+            })
             .catch(error => {
                 console.error('게시글 목록을 가져오는 데 실패했습니다.', error);
             });
@@ -87,55 +87,31 @@
       window.location.href = `modify-delete.html?postId=${postId}`;
     }
 
-    // list.html 스크립트 내부에서
-// generatePagination 함수 업데이트
-function generatePagination(totalPosts) {
-    const postsPerPage = 5; // 페이지당 게시물 수
-    const totalPages = Math.ceil(totalPosts / postsPerPage); // 전체 페이지 수 계산
+    // 페이지네이션 생성 함수
+    function generatePagination(totalPosts) {
+      const postsPerPage = 5; // 페이지당 게시물 수
+      const totalPages = Math.ceil(totalPosts / postsPerPage); // 전체 페이지 수 계산
 
-    const paginationContainer = document.querySelector('.board_page');
-
-    for (let i = 1; i <= totalPages; i++) {
+      const paginationContainer = document.querySelector('.board_page');
+      
+      for (let i = 1; i <= totalPages; i++) {
         const pageLink = document.createElement('a');
         pageLink.href = '#';
         pageLink.classList.add('num');
         if (i === 1) {
-            pageLink.classList.add('on');
+          pageLink.classList.add('on');
         }
         pageLink.textContent = i;
-        pageLink.addEventListener('click', () => goToPage(i - 1)); // 여기에서 인덱스 (페이지 번호 - 1)를 전달합니다
+        pageLink.addEventListener('click', () => goToPage(i));
 
         paginationContainer.appendChild(pageLink);
+      }
     }
-}
 
-
-    // goToPage 함수 업데이트
-function goToPage(pageNumber) {
-    const postsPerPage = 5; // 페이지당 게시물 수
-    const startIdx = pageNumber * postsPerPage;
-    const endIdx = startIdx + postsPerPage;
-
-    // 선택한 페이지에 대한 게시물을 표시
-    const postElements = document.querySelectorAll('.board_list > .top + div');
-    postElements.forEach((element, index) => {
-        if (index >= startIdx && index < endIdx) {
-            element.style.display = 'block';
-        } else {
-            element.style.display = 'none';
-        }
-    });
-
-    // 페이지네이션 스타일 업데이트
-    const paginationLinks = document.querySelectorAll('.board_page a');
-    paginationLinks.forEach((link, index) => {
-        if (index === pageNumber) {
-            link.classList.add('on');
-        } else {
-            link.classList.remove('on');
-        }
-    });
-}
+    function goToPage(pageNumber) {
+      // 선택한 페이지에 대한 게시물을 가져와 표시하는 논리를 구현하세요
+      console.log(`${pageNumber} 페이지로 이동`);
+    }
   </script>
 </body>
 </html>

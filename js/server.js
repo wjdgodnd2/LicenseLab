@@ -47,7 +47,7 @@ app.get('/api/posts', (req, res) => {
   });
 });
 
-// 게시물 생성 시 현재 시간을 이용하여 ID 생성
+// 새 게시물 생성
 app.post('/api/posts', (req, res) => {
   const { title, writer, password, content } = req.body;
 
@@ -55,17 +55,15 @@ app.post('/api/posts', (req, res) => {
     return res.status(400).json({ error: '모든 필드를 입력하세요.' });
   }
 
-  const created_at = new Date().toISOString(); // 현재 시간을 ISO 형식으로 저장
-
   db.run(
-    'INSERT INTO posts (title, writer, password, content, created_at) VALUES (?, ?, ?, ?, ?)',
-    [title, writer, password, content, created_at],
+    'INSERT INTO posts (title, writer, password, content) VALUES (?, ?, ?, ?)',
+    [title, writer, password, content],
     function (err) {
       if (err) {
         console.error('게시물 삽입 중 오류 발생:', err.message);
         res.status(500).json({ error: '내부 서버 오류' });
       } else {
-        res.json({ id: created_at });
+        res.json({ id: this.lastID });
       }
     }
   );
@@ -114,24 +112,20 @@ app.put('/api/posts/:id', (req, res) => {
 // 게시물 삭제
 app.delete('/api/posts/:id', (req, res) => {
   const postId = req.params.id;
-  const password = req.body.password;
 
   // 비밀번호 검사 로직 추가
-  db.get('SELECT * FROM posts WHERE created_at = ?', [postId], (err, row) => {
+  db.get('SELECT * FROM posts WHERE id = ?', [postId], (err, row) => {
     if (err) {
       console.error('게시물 조회 중 오류 발생:', err.message);
       return res.status(500).json({ error: '내부 서버 오류' });
     }
+
     if (!row) {
       return res.status(404).json({ error: '해당 ID의 게시물을 찾을 수 없습니다.' });
     }
 
-    if (row.password !== password) {
-      return res.status(401).json({ error: '비밀번호가 일치하지 않습니다.' });
-    }
-
     // 비밀번호가 일치하면 게시물 삭제
-    db.run('DELETE FROM posts WHERE created_at = ?', [postId], (err) => {
+    db.run('DELETE FROM posts WHERE id = ?', [postId], (err) => {
       if (err) {
         console.error('게시물 삭제 중 오류 발생:', err.message);
         return res.status(500).json({ error: '내부 서버 오류' });
