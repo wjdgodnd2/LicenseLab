@@ -122,7 +122,6 @@ app.delete('/api/posts/:id', (req, res) => {
       console.error('게시물 조회 중 오류 발생:', err.message);
       return res.status(500).json({ error: '내부 서버 오류' });
     }
-
     if (!row) {
       return res.status(404).json({ error: '해당 ID의 게시물을 찾을 수 없습니다.' });
     }
