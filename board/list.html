@@ -1,3 +1,5 @@
+<!-- list.html 수정 -->
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -30,19 +32,19 @@
             <!-- 여기에 동적으로 게시글이 추가될 것입니다. -->
             <div class="top">
               <div class="num">번호</div>
-              <div class="title">
-                <a href="#" onclick="console.log('클릭 이벤트 발생'); openModifyDeletePage('${post.created_at}')">제목</a>
-              </div>
+            <div class="title">
+              <a href="#" onclick="console.log('클릭 이벤트 발생'); openModifyDeletePage('${post.id}')">제목</a>
+            </div>
               <div class="writer">글쓴이</div>
               <div class="date">작성일</div>
               <div class="count">조회</div>
-              <div class="delete">삭제</div>
             </div>
           </div>
           <!-- 페이지네이션 등의 UI 요소도 추가 가능 -->
           <div class="board_page"></div>
           <div class="bt_wrap">
             <a href="write.html" class="on">등록</a>
+            <!--<a href="#">수정</a>-->
           </div>
         </div>
       </div>
@@ -51,107 +53,87 @@
   <footer data-include="/LicenseLab/include/footer.html"></footer>
 
   <script type="module">
-    window.openModifyDeletePage = openModifyDeletePage;
-
+  window.openModifyDeletePage = openModifyDeletePage;
     document.addEventListener('DOMContentLoaded', function () {
-      // 페이지 로딩 시 초기 데이터를 가져와서 게시물 목록을 표시
-      fetchDataAndRender(1);
+        fetch('http://localhost:3000/api/posts')
+            .then(response => response.json())
+            .then(posts => {
+    const postListContainer = document.getElementById('postList');
+
+    posts.forEach((post, index) => {
+        const postElement = document.createElement('div');
+        postElement.innerHTML = `
+            <div class="num">${index + 1}</div>
+            <div class="title"><a href="#" onclick="openModifyDeletePage(${post.id})">${post.title}</a></div>
+            <div class="writer">${post.writer}</div>
+            <div class="date">${post.created_at}</div>
+            <div class="count">${post.views}</div>
+        `;
+
+        postListContainer.appendChild(postElement);
     });
 
-    // 게시물 목록을 가져와서 화면에 렌더링하는 함수
-    function fetchDataAndRender(pageNumber) {
-      fetch(`http://localhost:3000/api/posts?_page=${pageNumber}&_limit=5`)
-        .then(response => response.json())
-        .then(posts => {
-          const postListContainer = document.getElementById('postList');
-          postListContainer.innerHTML = ''; // 현재 게시물 목록을 비워줌
+    // 페이지네이션 생성 함수 호출
+    generatePagination(posts.length);
+})
+            .catch(error => {
+                console.error('게시글 목록을 가져오는 데 실패했습니다.', error);
+            });
+    });
 
-          posts.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.innerHTML = `
-              <div class="num">${post.id}</div>
-              <div class="title"><a href="#" onclick="openModifyDeletePage('${post.created_at}')">${post.title}</a></div>
-              <div class="writer">${post.writer}</div>
-              <div class="date">${post.created_at}</div>
-              <div class="count">${post.views}</div>
-              <div class="delete" onclick="deletePost('${post.created_at}')">삭제</div>
-            `;
-
-            postListContainer.appendChild(postElement);
-          });
-
-          // 페이지네이션 생성 함수 호출
-          generatePagination(posts.length);
-        })
-        .catch(error => {
-          console.error('게시글 목록을 가져오는 데 실패했습니다.', error);
-        });
+    function openModifyDeletePage(postId) {
+      console.log('openModifyDeletePage 함수 호출:', postId);
+      // 게시물 ID를 URL 파라미터에 추가하여 modify-delete.html로 이동
+      window.location.href = `modify-delete.html?postId=${postId}`;
     }
 
-    function deletePost(created_at) {
-      const password = prompt('비밀번호를 입력하세요.');
+    // generatePagination 함수 업데이트
+function generatePagination(totalPosts) {
+    const postsPerPage = 5; // 페이지당 게시물 수
+    const totalPages = Math.ceil(totalPosts / postsPerPage); // 전체 페이지 수 계산
 
-      if (!password) {
-        alert('비밀번호를 입력하세요.');
-        return;
-      }
+    const paginationContainer = document.querySelector('.board_page');
 
-      // 서버로 삭제 요청을 보냄
-      fetch(`http://localhost:3000/api/posts/${created_at}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          password: password,
-        }),
-      })
-        .then(response => response.json())
-        .then(() => {
-          alert('게시물이 삭제되었습니다.');
-          // 삭제 후 페이지 갱신
-          fetchDataAndRender(1);
-        })
-        .catch(error => {
-          console.error('게시글을 삭제하는 데 실패했습니다.', error);
-          alert('게시물 삭제에 실패했습니다.');
-        });
-    }
-
-    // 페이지네이션 생성 함수
-    function generatePagination(totalPosts) {
-      const postsPerPage = 5; // 페이지당 게시물 수
-      const totalPages = Math.ceil(totalPosts / postsPerPage); // 전체 페이지 수 계산
-
-      const paginationContainer = document.querySelector('.board_page');
-
-      for (let i = 1; i <= totalPages; i++) {
+    for (let i = 1; i <= totalPages; i++) {
         const pageLink = document.createElement('a');
         pageLink.href = '#';
         pageLink.classList.add('num');
         if (i === 1) {
-          pageLink.classList.add('on');
+            pageLink.classList.add('on');
         }
         pageLink.textContent = i;
-        pageLink.addEventListener('click', () => {
-          goToPage(i);
-        });
+        pageLink.addEventListener('click', () => goToPage(i - 1)); // 여기에서 인덱스 (페이지 번호 - 1)를 전달합니다
 
         paginationContainer.appendChild(pageLink);
-      }
     }
+}
 
-    // 페이지네이션을 이용하여 페이지 이동
-    function goToPage(pageNumber) {
-      // 선택한 페이지에 대한 게시물을 가져와 표시하는 논리를 구현하세요
-      fetchDataAndRender(pageNumber);
-    }
+    // goToPage 함수 업데이트
+function goToPage(pageNumber) {
+    const postsPerPage = 5; // 페이지당 게시물 수
+    const startIdx = pageNumber * postsPerPage;
+    const endIdx = startIdx + postsPerPage;
 
-    function openModifyDeletePage(created_at) {
-      console.log('openModifyDeletePage 함수 호출:', created_at);
-      // 게시물 생성 시간을 URL 파라미터에 추가하여 modify-delete.html로 이동
-      window.location.href = `modify-delete.html?created_at=${created_at}`;
-    }
+    // 선택한 페이지에 대한 게시물을 표시
+    const postElements = document.querySelectorAll('.board_list > .top + div');
+    postElements.forEach((element, index) => {
+        if (index >= startIdx && index < endIdx) {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    });
+
+    // 페이지네이션 스타일 업데이트
+    const paginationLinks = document.querySelectorAll('.board_page a');
+    paginationLinks.forEach((link, index) => {
+        if (index === pageNumber) {
+            link.classList.add('on');
+        } else {
+            link.classList.remove('on');
+        }
+    });
+}
   </script>
 </body>
 </html>
