@@ -110,13 +110,13 @@ app.put('/api/posts/:id', (req, res) => {
     );
   });
 });
-
 // 게시물 삭제
 app.delete('/api/posts/:id', (req, res) => {
   const postId = req.params.id;
+  const password = req.body.password;
 
   // 비밀번호 검사 로직 추가
-  db.get('SELECT * FROM posts WHERE id = ?', [postId], (err, row) => {
+  db.get('SELECT * FROM posts WHERE created_at = ?', [postId], (err, row) => {
     if (err) {
       console.error('게시물 조회 중 오류 발생:', err.message);
       return res.status(500).json({ error: '내부 서버 오류' });
@@ -126,8 +126,12 @@ app.delete('/api/posts/:id', (req, res) => {
       return res.status(404).json({ error: '해당 ID의 게시물을 찾을 수 없습니다.' });
     }
 
+    if (row.password !== password) {
+      return res.status(401).json({ error: '비밀번호가 일치하지 않습니다.' });
+    }
+
     // 비밀번호가 일치하면 게시물 삭제
-    db.run('DELETE FROM posts WHERE id = ?', [postId], (err) => {
+    db.run('DELETE FROM posts WHERE created_at = ?', [postId], (err) => {
       if (err) {
         console.error('게시물 삭제 중 오류 발생:', err.message);
         return res.status(500).json({ error: '내부 서버 오류' });
