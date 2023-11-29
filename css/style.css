@@ -60,6 +60,58 @@ a {
     background: #000;
     color: #fff;
 }
+
+.board_list_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board_list {
+    width: 80%; /* 또는 원하는 너비로 조정 */
+}
+
+.top, .board_page {
+    display: flex;
+    justify-content: center;
+}
+
+.top > div, .board_page a {
+    text-align: center;
+}
+
+/* write.html, modify-delete.html의 스타일 시트에 추가 */
+
+.board_write_wrap, .board_view_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board_write, .board_view {
+    width: 80%; /* 또는 원하는 너비로 조정 */
+}
+
+.board_write dl, .board_view dl {
+    margin: 10px 0;
+    text-align: left;
+}
+
+.board_write dl dt, .board_view dl dt {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.board_write dl dd, .board_view dl dd {
+    margin: 0;
+}
+
+.bt_wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 .board_list {
     width: 100%;
     border-top: 2px solid #000;
