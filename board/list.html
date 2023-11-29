@@ -87,7 +87,7 @@
       window.location.href = `modify-delete.html?postId=${postId}`;
     }
 
-    // generatePagination 함수 업데이트
+    /// generatePagination 함수 업데이트
 function generatePagination(totalPosts) {
     const postsPerPage = 5; // 페이지당 게시물 수
     const totalPages = Math.ceil(totalPosts / postsPerPage); // 전체 페이지 수 계산
@@ -102,37 +102,64 @@ function generatePagination(totalPosts) {
             pageLink.classList.add('on');
         }
         pageLink.textContent = i;
-        pageLink.addEventListener('click', () => goToPage(i - 1)); // 여기에서 인덱스 (페이지 번호 - 1)를 전달합니다
+        pageLink.addEventListener('click', () => goToPage(i - 1, totalPages)); // 여기에서 인덱스와 전체 페이지 수를 전달합니다
 
         paginationContainer.appendChild(pageLink);
     }
+
+    // 페이지네이션 생성 후 첫 페이지의 게시글 표시
+    goToPage(0, totalPages);
 }
 
     // goToPage 함수 업데이트
-function goToPage(pageNumber) {
+function goToPage(pageNumber, totalPages) {
     const postsPerPage = 5; // 페이지당 게시물 수
     const startIdx = pageNumber * postsPerPage;
     const endIdx = startIdx + postsPerPage;
 
-    // 선택한 페이지에 대한 게시물을 표시
-    const postElements = document.querySelectorAll('.board_list > .top + div');
-    postElements.forEach((element, index) => {
-        if (index >= startIdx && index < endIdx) {
-            element.style.display = 'block';
-        } else {
-            element.style.display = 'none';
-        }
-    });
+    // 서버에서 가져온 게시글 배열
+    let posts;
 
-    // 페이지네이션 스타일 업데이트
-    const paginationLinks = document.querySelectorAll('.board_page a');
-    paginationLinks.forEach((link, index) => {
-        if (index === pageNumber) {
-            link.classList.add('on');
-        } else {
-            link.classList.remove('on');
-        }
-    });
+    // 게시글을 서버에서 가져오기
+    fetch('http://localhost:3000/api/posts')
+        .then(response => response.json())
+        .then(data => {
+            posts = data;
+
+            // 선택한 페이지에 대한 게시물 표시
+            const postElements = document.querySelectorAll('.board_list > .top + div');
+            postElements.forEach((element, index) => {
+                if (index >= startIdx && index < endIdx) {
+                    if (posts[index]) {
+                        element.style.display = 'block';
+                        element.innerHTML = `
+                            <div class="num">${index + 1}</div>
+                            <div class="title"><a href="#" onclick="openModifyDeletePage(${posts[index].id})">${posts[index].title}</a></div>
+                            <div class="writer">${posts[index].writer}</div>
+                            <div class="date">${posts[index].created_at}</div>
+                            <div class="count">${posts[index].views}</div>
+                        `;
+                    } else {
+                        element.style.display = 'none';
+                    }
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+
+            // 페이지네이션 스타일 업데이트
+            const paginationLinks = document.querySelectorAll('.board_page a');
+            paginationLinks.forEach((link, index) => {
+                if (index === pageNumber) {
+                    link.classList.add('on');
+                } else {
+                    link.classList.remove('on');
+                }
+            });
+        })
+        .catch(error => {
+            console.error('게시글을 가져오는 중 에러 발생:', error);
+        });
 }
   </script>
 </body>
