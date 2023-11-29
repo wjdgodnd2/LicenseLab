@@ -68,29 +68,6 @@ app.post('/api/posts', (req, res) => {
     }
   );
 });
-// 게시물 생성 시 현재 시간을 이용하여 ID 생성
-app.post('/api/posts', (req, res) => {
-  const { title, writer, password, content } = req.body;
-
-  if (!title || !writer || !password || !content) {
-    return res.status(400).json({ error: '모든 필드를 입력하세요.' });
-  }
-
-  const created_at = new Date().toISOString(); // 현재 시간을 ISO 형식으로 저장
-
-  db.run(
-    'INSERT INTO posts (title, writer, password, content, created_at) VALUES (?, ?, ?, ?, ?)',
-    [title, writer, password, content, created_at],
-    function (err) {
-      if (err) {
-        console.error('게시물 삽입 중 오류 발생:', err.message);
-        res.status(500).json({ error: '내부 서버 오류' });
-      } else {
-        res.json({ id: created_at });
-      }
-    }
-  );
-});
 
 // 게시물 수정
 app.put('/api/posts/:id', (req, res) => {
