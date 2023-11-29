@@ -133,7 +133,7 @@ function goToPage(pageNumber, totalPages) {
                     if (posts[index]) {
                         element.style.display = 'block';
                         element.innerHTML = `
-                            <div class="num">${index + 5}</div>
+                            <div class="num">${index + 1}</div>
                             <div class="title"><a href="#" onclick="openModifyDeletePage(${posts[index].id})">${posts[index].title}</a></div>
                             <div class="writer">${posts[index].writer}</div>
                             <div class="date">${posts[index].created_at}</div>
@@ -150,7 +150,7 @@ function goToPage(pageNumber, totalPages) {
             // 페이지네이션 스타일 업데이트
             const paginationLinks = document.querySelectorAll('.board_page a');
             paginationLinks.forEach((link, index) => {
-                if (index === pageNumber - 1) {
+                if (index === pageNumber - 5) {
                     link.classList.add('on');
                 } else {
                     link.classList.remove('on');
