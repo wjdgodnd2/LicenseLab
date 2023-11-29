@@ -1,13 +1,16 @@
-<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
     <link rel="stylesheet" href="/LicenseLab/css/css.css">
+    <link rel="stylesheet" href="/LicenseLab/css/main.css">
+    <script src="/LicenseLab/js/includeHTML.js" defer></script>
+    <script src="/LicenseLab/js/main.js"></script>
     <script src="/LicenseLab/js/server.js" defer></script>
 </head>
 <body>
+    <header data-include="/LicenseLab/include/header.html"></header>
     <div class="board_wrap">
         <div class="board_title">
             <strong>게시판</strong>
@@ -43,7 +46,6 @@
             </div>
         </div>
     </div>
-
     <script>
         function submitPost() {
           const title = document.getElementById('titleInput').value;
@@ -72,5 +74,6 @@
           });
         }
       </script>
+    <footer data-include="/LicenseLab/include/footer.html"></footer>
 </body>
 </html>
